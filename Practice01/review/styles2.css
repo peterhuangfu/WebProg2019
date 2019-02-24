@@ -1,0 +1,151 @@
+h1 {
+    font-family: 'Coiny', cursive;
+    background: #0e8dbc;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    text-shadow: 0 1px 0 #ccc,
+                 0 2px 0 #c9c9c9,
+                 0 3px 0 #bbb,
+                 0 4px 0 #b9b9b9,
+                 0 5px 0 #aaa,
+                 0 5px 1px rgba(0,0,0,.1),
+                 0 0   5px rgba(0,0,0,.1),
+                 0 1px 3px rgba(0,0,0,.3),
+                 0 3px 5px rgba(0,0,0,.2),
+                 0 5px 5px rgba(0,0,0,.25),
+                 0 5px 5px rgba(0,0,0,.2),
+                 0 10px 10px rgba(0,0,0,.15);
+}
+
+h1:hover {
+    background: rgba(14, 141, 188, .6);
+}
+
+h2 {
+    background: rgba(14, 141, 188, .8);
+    color: white;
+    padding: 10px;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+    font: italic bold Georgia, Serif;
+    text-shadow: 6px 7px 0 #007799;
+}
+
+h2:hover {
+    background: rgba(14, 141, 188, .4);
+}
+
+h3 {
+    background-color: #FFFFDC;  
+    padding: 10px;
+    font-family: 'PT Sans', sans-serif; 
+    color: #444444;
+    text-align: center;
+    text-shadow:
+    0 1px #FFE4B5,
+    1px 0 #FFEE99,
+    1px 2px #FFE4B5,
+    2px 1px #FFEE99,
+    2px 3px #FFE4B5,
+    3px 2px #FFEE99,
+    3px 4px #FFE4B5,
+    4px 3px #FFEE99,
+    4px 5px #FFE4B5,
+    5px 4px #FFEE99,
+    5px 6px #FFE4B5,
+    6px 5px #FFEE99,
+    6px 7px #FFE4B5,
+    7px 6px #FFEE99,
+    7px 8px #FFE4B5,
+    8px 7px #FFEE99;
+}
+
+h4 {
+    background-color: #FFDEAD;  
+    padding: 10px;
+    color: black;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+    text-shadow: 2px 3px 0 #F4A460;
+}
+
+h5{ background-color: #FFD700;
+    padding: 6px;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+}
+
+h5:hover{
+    background: rgba(255, 215, 0, .5);
+}
+
+h6{ background-color: #F4A460;
+    padding: 4px;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+}
+
+h6:hover{
+    background: rgba(244, 164, 96, .8);
+}
+
+blockquote{
+    background-color: white;
+    padding: 10px;
+    background: linear-gradient(45deg, white, #367517);
+}
+
+.box {
+    width:70%;
+    height:50px;
+    /*background: linear-gradient(90deg, white, #888888);*/
+    background-color: #E6F1D8; /* #f0f0f0*/
+    margin:40px auto;
+    padding: 15px;
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+}
+
+.effect2:before, .effect2:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #AAAAAA;
+  -webkit-box-shadow: 0 15px 10px #AAAAAA;
+  -moz-box-shadow: 0 15px 10px #AAAAAA;
+  box-shadow: 0 15px 10px #AAAAAA;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+.effect2:after
+{
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+.box2 {
+    width:70%;
+    height:50px;
+    /*background: linear-gradient(90deg, white, #888888);*/
+    background-color: #f0f0f0; /* #f0f0f0*/
+    margin:40px auto;
+    padding: 15px;
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+}
