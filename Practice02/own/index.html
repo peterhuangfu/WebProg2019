@@ -10,26 +10,22 @@
             <span class="image-viewer__title">Image Viewer</span>
         </div>
         <div class="image-viewer__main">
-            <button class="image-viewer__button" onclick="back_photo()">
+            <button id="back_butt" class="image-viewer__button" onclick="back_photo()">
                 <img src="./back.png" alt="Back">
             </button>
                 
             <div class="image-viewer__display">
                 <img id="display" src="" alt="Image">
+                <div class="image-viewer__display-source-wrapper">
+                    <span>
+                        <a id="source" href=""></a>
+                    </span>
+                </div>
             </div>
-            <button class="image-viewer__button" onclick="next_photo()">
+            <button id="next_butt" class="image-viewer__button" onclick="next_photo()">
                 <img src="./next.png" alt="Next">
             </button>
         </div>
-        <div class="image-viewer__display-source-wrapper">
-            <span>
-                <a id="source" href=""></a>
-            </span>
-        </div>
-    <!-- Try to implement an HTML that looks like the reference example:
-         https://github.com/ric2k1/ric2k1.github.io/blob/master/W2_0227/practice/img_viewer_begin/images/screenshot.png  -->
-    <!-- Please use the class names and IDs as defined in styles.css
-         so that the outlook can be the same as the reference. -->
     </body>
 </html>
 <script type="text/javascript" src="./main.js"></script>

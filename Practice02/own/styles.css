@@ -93,7 +93,7 @@ body {
 	opacity: 0.2;
 }
 
-.disabled:hover {
+.disabled :hover {
 	border-color: transparent !important;
 	cursor: not-allowed;
 }
