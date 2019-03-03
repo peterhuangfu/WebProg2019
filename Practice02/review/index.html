@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Image Viewer</title>
+        <meta name="content-type" content="html/text; charset: UTF-8"> 
+        <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+    </head>
+
+    <body>
+        <script type="text/javascript" src="main.js"></script>
+
+        <div class="image-viewer__container">
+            <div class="image-viewer__title">
+                Image Viewer
+            </div>
+            <div class="image-viewer__main">
+                <button type="button" onclick=Back() class="image-viewer__button disabled">
+                    <img src="images/back.png" alt="back">
+                </button>
+
+
+                <div class="image-viewer__display-source-wrappers" >
+                    <img class="image-viewer__display" id = "display" src="images/pizza01.jpg">
+                    <p id = "source">
+                        Source:
+                    </p>
+                    
+                </div>
+
+                
+                <button type="button" onclick=Next() class="image-viewer__button">
+                    <img src="images/next.png" alt="next">
+                </button>
+            </div>
+        </div>
+
+        
+    </body>
+</html>
