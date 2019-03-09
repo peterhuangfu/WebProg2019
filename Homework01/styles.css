@@ -173,7 +173,6 @@ input[type='checkbox'] {
 
 .todo-app__view-buttons button:focus {
     outline: none;
-    border: 1px solid rgba(185, 171, 171, 0.698);
 }
 
 .todo-app__clean {

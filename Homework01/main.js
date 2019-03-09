@@ -4,6 +4,9 @@ const list_li = document.getElementById('todo-list');
 const todo_cnt = document.getElementById('todo-count');
 const footer = document.getElementById('todo-footer');
 const clean = document.getElementById('todo-clean');
+const all_button = document.getElementById('all_button');
+const active_button = document.getElementById('active_button');
+const complete_button = document.getElementById('complete_button');
 footer.style.display = 'none';
 nodes = [];
 list_id = 0;
@@ -19,6 +22,7 @@ function addToList(event) {
         if(nodes.length === 1) {
             footer.style.display = 'flex';
             state = 0;
+            filterAll();
         }
         todo_cnt.innerHTML = nodes.filter(comple => !comple.isComplete).length + ' left';
 
@@ -158,6 +162,9 @@ function filterAll() {
     for(i = 0; i < each_li.length; i++) {
         each_li[i].style.display = 'flex';
     }
+    all_button.style.border = '1px solid rgba(185, 171, 171, 0.698)';
+    active_button.style.border = '';
+    complete_button.style.border = '';
 }
 
 function filterActive() {
@@ -177,6 +184,9 @@ function filterActive() {
             }
         }
     }
+    active_button.style.border = '1px solid rgba(185, 171, 171, 0.698)';
+    all_button.style.border = '';
+    complete_button.style.border = '';
 }
 
 function filterComplete() {
@@ -196,4 +206,7 @@ function filterComplete() {
             }
         }
     }
+    complete_button.style.border = '1px solid rgba(185, 171, 171, 0.698)';
+    active_button.style.border = '';
+    all_button.style.border = '';
 }
