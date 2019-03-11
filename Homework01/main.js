@@ -163,8 +163,8 @@ function filterAll() {
         each_li[i].style.display = 'flex';
     }
     all_button.style.border = '1px solid rgba(185, 171, 171, 0.698)';
-    active_button.style.border = '';
-    complete_button.style.border = '';
+    active_button.style.border = 'none';
+    complete_button.style.border = 'none';
 }
 
 function filterActive() {
@@ -185,8 +185,8 @@ function filterActive() {
         }
     }
     active_button.style.border = '1px solid rgba(185, 171, 171, 0.698)';
-    all_button.style.border = '';
-    complete_button.style.border = '';
+    all_button.style.border = 'none';
+    complete_button.style.border = 'none';
 }
 
 function filterComplete() {
@@ -207,6 +207,6 @@ function filterComplete() {
         }
     }
     complete_button.style.border = '1px solid rgba(185, 171, 171, 0.698)';
-    active_button.style.border = '';
-    all_button.style.border = '';
+    active_button.style.border = 'none';
+    all_button.style.border = 'none';
 }
