@@ -7,6 +7,7 @@ const clean = document.getElementById('todo-clean');
 const all_button = document.getElementById('all_button');
 const active_button = document.getElementById('active_button');
 const complete_button = document.getElementById('complete_button');
+
 footer.style.display = 'none';
 nodes = [];
 list_id = 0;
@@ -59,11 +60,10 @@ function addList(content) {
     list_x.setAttribute('src', './img/x.png');
     list_x.setAttribute('onclick', 'del(event)');
     list_x.setAttribute('id', list_id);
-
-    ////////////////////////////////////////////////////////////////
     
     checkbox_div.appendChild(checkbox);
     checkbox_div.appendChild(checkbox_label);
+
     todo_list.appendChild(checkbox_div);
     todo_list.appendChild(list_content);
     todo_list.appendChild(list_x);
@@ -78,7 +78,6 @@ function check(event) {
 
     for(i = 0; i < nodes.length; i++) {
         if(id == nodes[i].node.id.replace('cnt','')) {
-            // let content = nodes[i].node.textContent;
             nodes[i].isComplete = !nodes[i].isComplete;
             item = nodes[i];
             break;
@@ -108,7 +107,6 @@ function check(event) {
     else {
         clean.style.visibility = 'hidden';
     }
-
     todo_cnt.innerHTML = nodes.filter(comple => !comple.isComplete).length + ' left';
     if(state === 1) {
         filterActive();
@@ -184,8 +182,8 @@ function filterActive() {
             }
         }
     }
-    active_button.style.border = '1px solid rgba(185, 171, 171, 0.698)';
     all_button.style.border = 'transparent';
+    active_button.style.border = '1px solid rgba(185, 171, 171, 0.698)';
     complete_button.style.border = 'transparent';
 }
 
@@ -206,7 +204,7 @@ function filterComplete() {
             }
         }
     }
-    complete_button.style.border = '1px solid rgba(185, 171, 171, 0.698)';
-    active_button.style.border = 'transparent';
     all_button.style.border = 'transparent';
+    active_button.style.border = 'transparent';
+    complete_button.style.border = '1px solid rgba(185, 171, 171, 0.698)';
 }
