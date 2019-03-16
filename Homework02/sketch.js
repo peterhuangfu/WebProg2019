@@ -175,10 +175,12 @@ function mousePressed() {
 function score_img() {
     if(score < 10) {
         image(scoreNum[score % 10], width/2-scoreNum[score % 10].width/2, score_height);
+        console.log(score_height);
     }
     else if(score >= 10 && score < 100) {
         image(scoreNum[parseInt(score/10)], width/2-scoreNum[parseInt(score/10)].width*3/2, score_height);
-        image(scoreNum[score % 10], width/2-scoreNum[score % 10].width/2, (height/2-scoreNum[score % 10].height/2)*1/3);
+        image(scoreNum[score % 10], width/2-scoreNum[score % 10].width/2, score_height);
+        console.log(score_height);
     }
     else {
         image(scoreNum[parseInt(score/100)], width/2-scoreNum[parseInt(score/100)].width*5/2, score_height)
