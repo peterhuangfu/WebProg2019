@@ -1,13 +1,14 @@
 let cvsWrapper = null;
 let backImg, start_screen, birdImg, overImg, base_x, x;
 let bgScale, bgHeight, startWidth, startHeight, baseWidth;
-let bird_up, bird_mid, bird_down, g;
+let bird_up, bird_mid, bird_down, g, score_height;
 let seed_img = Math.random();
 let seed_pipe = Math.random();
-// let pipe_wid = Math.random()*(0.30 - 0.20)+0.20;
 let pipe_wid, pipe_dis, start_height, seed_height;
-let start = 1, start_cnt = 0, score = 0;
+let start = 1, start_cnt = 0, score = 0, pipe_speed;
 var hit, swoosh, point, die, wing;
+var scoreNum = [];
+const number = ['0','1','2','3','4','5','6','7','8','9'];
 const backgroundImg = ['background-day', 'background-night'];
 const color = ['red', 'blue', 'yellow'];
 const state = ['upflap', 'midflap', 'downflap'];
@@ -16,26 +17,7 @@ const pipe_type = ['upper', 'lower'];
 class attri { speed = 0; x = 0; y = 0; angle = 0; };
 
 function preload() {
-    seed_img = Math.round(seed_img);
-    seed_pipe = Math.round(seed_pipe);
-    backImg = loadImage(`assets/sprites/${backgroundImg[seed_img]}.png`);
-
-    seed_img = Math.random()*2;
-    seed_img = Math.round(seed_img);
-    bird1 = loadImage(`assets/sprites/${color[seed_img]}bird-${state[1]}.png`);
-    bird2 = loadImage(`assets/sprites/${color[seed_img]}bird-${state[2]}.png`);
-    bird3 = loadImage(`assets/sprites/${color[seed_img]}bird-${state[0]}.png`);
-    pipe_up = loadImage(`assets/sprites/pipe-${pipe_color[seed_img]}-${pipe_type[0]}.png`);
-    pipe_low = loadImage(`assets/sprites/pipe-${pipe_color[seed_img]}-${pipe_type[1]}.png`);
-    base = loadImage('assets/sprites/base.png');
-    start_screen = loadImage('assets/sprites/message.png');
-    overImg = loadImage('assets/sprites/gameover.png');
-
-    hit = loadSound('assets/audio/hit.ogg');
-    die = loadSound('assets/audio/die.ogg');
-    wing = loadSound('assets/audio/wing.ogg');
-    swoosh = loadSound('assets/audio/swoosh.ogg');
-    point = loadSound('assets/audio/point.ogg');
+    load_img();
 }
 
 function setup() {
@@ -70,11 +52,14 @@ function setup() {
     start_generate();
 
     base_x = 0;
+    score = 0;
     bgScale = width/backImg.width;
     bgHeight = height/backImg.height;
     startWidth = width/start_screen.width;
     startHeight = height/start_screen.height;
     baseWidth = width/base.width;
+    score_height = (height/2-scoreNum[0].height/2)*1/3;
+    pipe_speed = 2;
     g = 0.3;
 }
 
@@ -83,12 +68,16 @@ function draw() {
     base_x -= 1;
     if(bg.x < -backImg.width*bgScale) bg.x = 0;
     if(base_x < -base.width*baseWidth) base_x = 0;
+    pipe_speed = 2 + parseInt(score/10)*0.1;
 
     if(start === 1) {
         start_tap();
     }
     else if(start === 2) {
+        // wing flap
         flap();
+
+        // generate obstacle
         obstacle();
 
         // speed change
@@ -97,31 +86,48 @@ function draw() {
         bird.angle += 0.03;
 
         // rotate
+        push();
         translate(bird.x+birdImg.width/2, bird.y+birdImg.height/2);
         rotate(bird.angle);
         image(birdImg, 0, 0, birdImg.width, birdImg.height);
+        pop();
 
-        // collide
+        // ********** collide **********
         if(bird.x+birdImg.width >= pipe1_up.x && bird.x <= pipe1_up.x+pipe_up.width*2/3) {
-            if(bird.y+birdImg.height+30 >= pipe1_low.y || bird.y <= pipe1_low.y-pipe_dis-25) gameover();
+            if(bird.y+birdImg.height+25 >= pipe1_low.y || bird.y <= pipe1_low.y-pipe_dis-22) gameover();
         }
         else if(bird.x+birdImg.width >= pipe2_up.x && bird.x <= pipe2_up.x+pipe_up.width*2/3) {
-            if(bird.y+birdImg.height+30 >= pipe2_low.y || bird.y <= pipe1_low.y-pipe_dis-25) gameover();
+            if(bird.y+birdImg.height+25 >= pipe2_low.y || bird.y <= pipe2_low.y-pipe_dis-22) gameover();
         }
-            
+        
+        // ********** get point **********
+        if(bird.x >= pipe1_up.x+pipe_up.width*2/3 && bird.x <= pipe1_up.x+pipe_up.width*2/3+2) {
+            score += 1;
+            point.play();
+        }
+        else if(bird.x >= pipe2_up.x+pipe_up.width*2/3 && bird.x <= pipe2_up.x+pipe_up.width*2/3+2) {
+            score += 1;
+            point.play();
+        }
 
         // touch floor or ceiling
         if(bird.y <= 1) bird.y = 0;
         else if(bird.y >= height-base.height-birdImg.height*2-5) gameover();
     }
-    else if(start === 0) image(overImg, width/2 - overImg.width/2, (height/2 - overImg.height/2)*2/3);
+    else if(start === 0) image(overImg, width/2 - overImg.width/2, (height/2 - overImg.height/2)/2);
+
+    if(start !== 1 && start !== 0) score_img();
+    else if (start === 0) {
+        score_height = (height/2 - overImg.height/2)*3/4;
+        score_img();
+    }
 }
 
 function obstacle() {
-    pipe1_up.x -= 2;
-    pipe1_low.x -= 2;
-    pipe2_up.x -= 2;
-    pipe2_low.x -= 2;
+    pipe1_up.x -= pipe_speed;
+    pipe1_low.x -= pipe_speed;
+    pipe2_up.x -= pipe_speed;
+    pipe2_low.x -= pipe_speed;
 
     if(pipe1_up.x < -pipe_up.width) regenerate1();
     else if(pipe2_up.x < -pipe_up.width) regenerate2();
@@ -139,7 +145,9 @@ function obstacle() {
 function gameover() {
     overWidth = width/overImg.width;
     overHeight = height/overImg.height;
+    hit.play();
     start = 0;
+    die.play();
 }
 
 function keyPressed() {
@@ -162,6 +170,21 @@ function keyPressed() {
 function mousePressed() {
     if(start === 0) { start = 1; setup(); }
     else start = 2;
+}
+
+function score_img() {
+    if(score < 10) {
+        image(scoreNum[score % 10], width/2-scoreNum[score % 10].width/2, score_height);
+    }
+    else if(score >= 10 && score < 100) {
+        image(scoreNum[parseInt(score/10)], width/2-scoreNum[parseInt(score/10)].width*3/2, score_height);
+        image(scoreNum[score % 10], width/2-scoreNum[score % 10].width/2, (height/2-scoreNum[score % 10].height/2)*1/3);
+    }
+    else {
+        image(scoreNum[parseInt(score/100)], width/2-scoreNum[parseInt(score/100)].width*5/2, score_height)
+        image(scoreNum[parseInt(score/10)], width/2-scoreNum[parseInt(score/10)].width*3/2, score_height);
+        image(scoreNum[score % 10], width/2-scoreNum[score % 10].width/2, score_height);
+    }
 }
 
 function start_tap() {
@@ -283,5 +306,31 @@ function start_generate() {
         pipe2_up.y = pipe2_low.y-pipe_dis-pipe_up.height;
         image(pipe_up, pipe2_up.x, pipe2_up.y);
         image(pipe_low, pipe2_low.x, pipe2_low.y);
+    }
+}
+
+function load_img() {
+    seed_img = Math.round(seed_img);
+    seed_pipe = Math.round(seed_pipe);
+    backImg = loadImage(`assets/sprites/${backgroundImg[seed_img]}.png`);
+
+    seed_img = Math.random()*2;
+    seed_img = Math.round(seed_img);
+    bird1 = loadImage(`assets/sprites/${color[seed_img]}bird-${state[1]}.png`);
+    bird2 = loadImage(`assets/sprites/${color[seed_img]}bird-${state[2]}.png`);
+    bird3 = loadImage(`assets/sprites/${color[seed_img]}bird-${state[0]}.png`);
+    pipe_up = loadImage(`assets/sprites/pipe-${pipe_color[seed_img]}-${pipe_type[0]}.png`);
+    pipe_low = loadImage(`assets/sprites/pipe-${pipe_color[seed_img]}-${pipe_type[1]}.png`);
+    base = loadImage('assets/sprites/base.png');
+    start_screen = loadImage('assets/sprites/message.png');
+    overImg = loadImage('assets/sprites/gameover.png');
+
+    hit = loadSound('assets/audio/hit.ogg');
+    die = loadSound('assets/audio/die.ogg');
+    wing = loadSound('assets/audio/wing.ogg');
+    swoosh = loadSound('assets/audio/swoosh.ogg');
+    point = loadSound('assets/audio/point.ogg');
+    for(i = 0; i < 10; i++) {
+        scoreNum.push(loadImage(`assets/sprites/${number[i]}.png`));
     }
 }
