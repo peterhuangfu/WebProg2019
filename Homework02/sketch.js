@@ -175,12 +175,10 @@ function mousePressed() {
 function score_img() {
     if(score < 10) {
         image(scoreNum[score % 10], width/2-scoreNum[score % 10].width/2, score_height);
-        console.log(score_height);
     }
     else if(score >= 10 && score < 100) {
         image(scoreNum[parseInt(score/10)], width/2-scoreNum[parseInt(score/10)].width*3/2, score_height);
         image(scoreNum[score % 10], width/2-scoreNum[score % 10].width/2, score_height);
-        console.log(score_height);
     }
     else {
         image(scoreNum[parseInt(score/100)], width/2-scoreNum[parseInt(score/100)].width*5/2, score_height)
@@ -315,14 +313,14 @@ function load_img() {
     seed_img = Math.round(seed_img);
     seed_pipe = Math.round(seed_pipe);
     backImg = loadImage(`assets/sprites/${backgroundImg[seed_img]}.png`);
+    pipe_up = loadImage(`assets/sprites/pipe-${pipe_color[seed_img]}-${pipe_type[0]}.png`);
+    pipe_low = loadImage(`assets/sprites/pipe-${pipe_color[seed_img]}-${pipe_type[1]}.png`);
 
     seed_img = Math.random()*2;
     seed_img = Math.round(seed_img);
     bird1 = loadImage(`assets/sprites/${color[seed_img]}bird-${state[1]}.png`);
     bird2 = loadImage(`assets/sprites/${color[seed_img]}bird-${state[2]}.png`);
     bird3 = loadImage(`assets/sprites/${color[seed_img]}bird-${state[0]}.png`);
-    pipe_up = loadImage(`assets/sprites/pipe-${pipe_color[seed_img]}-${pipe_type[0]}.png`);
-    pipe_low = loadImage(`assets/sprites/pipe-${pipe_color[seed_img]}-${pipe_type[1]}.png`);
     base = loadImage('assets/sprites/base.png');
     start_screen = loadImage('assets/sprites/message.png');
     overImg = loadImage('assets/sprites/gameover.png');
