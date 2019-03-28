@@ -1,28 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Section from './components/section';
+import Footer from './components/footer';
 
-class App extends Component {
+class Homepage extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="todo-app__root">
+        <header className="todo-app__header"><h1 className="todo-app__title">TODO</h1></header>
+        <Section />
+        <Footer />
       </div>
     );
   }
 }
 
-export default App;
+export default Homepage;
