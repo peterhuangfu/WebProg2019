@@ -177,7 +177,8 @@ input[type='checkbox'] {
 
 .todo-app__clean {
     vertical-align: middle;
-    visibility: hidden;
+    /* visibility: hidden; */
+    visibility: visible;
 }
 
 .todo-app__clean button {
