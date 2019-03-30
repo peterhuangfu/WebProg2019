@@ -15,7 +15,7 @@ class Footer extends Component {
           <li><Button name="Active" onClick={this.props.filterAct}/></li>
           <li><Button name="Completed" onClick={this.props.filterCom}/></li>
         </ul>
-        <div className="todo-app__clean"><Button name="Clear Completed" onClick={this.props.clean} /></div>
+        <div className="todo-app__clean"><Button name="Clear Completed" onClick={this.props.clear} /></div>
       </footer>
     );
   }
