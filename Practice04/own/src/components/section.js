@@ -8,16 +8,20 @@ class Section extends Component {
     this.arg = [];
   }
 
-  check = e => {
+  check = (id) => {
     for(let i = this.state.del.length-1; i >= 0; i--)
       this.arg.splice(this.state.del[i], 1);
     this.setState(() => ({ del: [] }));
-    const index = this.arg.indexOf(parseInt(e.target.id));
+    const index = this.arg.indexOf(parseInt(id));
     this.setState(state => state.list[index].isComplete = !state.list[index].isComplete);
+    this.setState(state => (state.list[index].node = <Item id={state.list[index].node.props.id} isComplete={state.list[index].isComplete} check={state.list[index].node.props.check} delete={state.list[index].node.props.delete} content={state.list[index].node.props.content}/>));
     setTimeout(() => this.props.update_num(this.state.list.filter(e => !e.isComplete).length), 100);
   };
 
   del = e => {
+    for(let i = this.state.del.length-1; i >= 0; i--)
+      this.arg.splice(this.state.del[i], 1);
+    this.setState(() => ({ del: [] }));
     const index = this.arg.indexOf(parseInt(e.target.id));
     this.setState(state => state.list.splice(index, 1));
     this.arg.splice(index, 1);
@@ -27,7 +31,7 @@ class Section extends Component {
   handler = e => {
     if(e.key === 'Enter' && e.target.value.trim() !== '') {
       const content = e.target.value.trim();
-      const newItem = { node: <Item id={this.state.id} check={this.check} delete={this.del} content={content}/>, isComplete: false };
+      const newItem = { node: <Item id={this.state.id} isComplete={false} check={this.check} delete={this.del} content={content}/>, isComplete: false };
       this.arg.push(this.state.id);
       this.setState(state => ({ id: state.id + 1 }));
       this.setState(state => ({ list: state.list.concat([newItem]) }));
@@ -42,7 +46,6 @@ class Section extends Component {
       t = t.map(e => e.node.props.id);
       return { list: state.list.filter(e => !e.isComplete), del: t };
     }
-      
     return null;
   }
 
