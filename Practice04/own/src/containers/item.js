@@ -10,7 +10,7 @@ class Item extends Component {
           <input type="checkbox" checked={this.props.isComplete} onChange={() => this.props.check(this.props.id)} id={this.props.id}/>
           <label htmlFor={this.props.id}/>
         </div>
-        <h1 className="todo-app__item-detail">{this.props.content}</h1>
+        <h1 className="todo-app__item-detail" style={this.props.style}>{this.props.content}</h1>
         <img className="todo-app__item-x" onClick={this.props.delete} src={x} alt="" id={this.props.id} />
       </li>
     );

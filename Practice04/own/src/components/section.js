@@ -5,7 +5,7 @@ class Section extends Component {
   constructor(props) {
     super(props);
     this.state = { id: 0 , list: [], clear: this.props.clear, del: [] };
-    this.arg = [];
+    this.arg = []; this.style = { textDecoration: 'none' };
   }
 
   check = (id) => {
@@ -14,9 +14,17 @@ class Section extends Component {
     this.setState(() => ({ del: [] }));
     const index = this.arg.indexOf(parseInt(id));
     this.setState(state => state.list[index].isComplete = !state.list[index].isComplete);
-    this.setState(state => (state.list[index].node = <Item id={state.list[index].node.props.id} isComplete={state.list[index].isComplete} check={state.list[index].node.props.check} delete={state.list[index].node.props.delete} content={state.list[index].node.props.content}/>));
+    setTimeout(() => this.line(index), 100);
     setTimeout(() => this.props.update_num(this.state.list.filter(e => !e.isComplete).length), 100);
   };
+
+  line = (index) => {
+    if(this.state.list[index].isComplete === true) {
+      this.style = { textDecoration: 'line-through' };
+    }
+    else this.style = { textDecoration: 'none' };
+    this.setState(state => (state.list[index].node = <Item id={state.list[index].node.props.id} style={this.style} isComplete={state.list[index].isComplete} check={state.list[index].node.props.check} delete={state.list[index].node.props.delete} content={state.list[index].node.props.content}/>));
+  }
 
   del = e => {
     for(let i = this.state.del.length-1; i >= 0; i--)
@@ -31,7 +39,7 @@ class Section extends Component {
   handler = e => {
     if(e.key === 'Enter' && e.target.value.trim() !== '') {
       const content = e.target.value.trim();
-      const newItem = { node: <Item id={this.state.id} isComplete={false} check={this.check} delete={this.del} content={content}/>, isComplete: false };
+      const newItem = { node: <Item id={this.state.id} style={this.style} isComplete={false} check={this.check} delete={this.del} content={content}/>, isComplete: false };
       this.arg.push(this.state.id);
       this.setState(state => ({ id: state.id + 1 }));
       this.setState(state => ({ list: state.list.concat([newItem]) }));
