@@ -4,22 +4,24 @@ import Item from '../containers/item';
 class Section extends Component {
   constructor(props) {
     super(props);
-    this.state = { id: 0 , list: [] };
+    this.state = { id: 0 , list: [], clear: this.props.clear, del: [] };
     this.arg = [];
   }
 
   check = e => {
+    for(let i = this.state.del.length-1; i >= 0; i--)
+      this.arg.splice(this.state.del[i], 1);
+    this.setState(() => ({ del: [] }));
     const index = this.arg.indexOf(parseInt(e.target.id));
     this.setState(state => state.list[index].isComplete = !state.list[index].isComplete);
-    this.props.update_num(this.state.list.filter(e => !e.isComplete).length);
-    // setTimeout(() => console.log(this.state.list.filter(e => !e.isComplete)), 1000);
+    setTimeout(() => this.props.update_num(this.state.list.filter(e => !e.isComplete).length), 100);
   };
 
   del = e => {
     const index = this.arg.indexOf(parseInt(e.target.id));
     this.setState(state => state.list.splice(index, 1));
     this.arg.splice(index, 1);
-    this.props.update_num(this.state.list.filter(e => !e.isComplete).length); 
+    setTimeout(() => this.props.update_num(this.state.list.filter(e => !e.isComplete).length), 100);
   };
 
   handler = e => {
@@ -29,10 +31,20 @@ class Section extends Component {
       this.arg.push(this.state.id);
       this.setState(state => ({ id: state.id + 1 }));
       this.setState(state => ({ list: state.list.concat([newItem]) }));
-      this.props.update_num(this.state.list.filter(e => !e.isComplete).length);
       e.target.value = '';
+      setTimeout(() => this.props.update_num(this.state.list.filter(e => !e.isComplete).length), 100);
     }
   };
+
+  static getDerivedStateFromProps(props, state) {
+    if(props.clear !== state.clear && props.clear === true) {
+      let t = state.list.filter(e => e.isComplete);
+      t = t.map(e => e.node.props.id);
+      return { list: state.list.filter(e => !e.isComplete), del: t };
+    }
+      
+    return null;
+  }
 
   render() {
     const situation = this.props.command;
