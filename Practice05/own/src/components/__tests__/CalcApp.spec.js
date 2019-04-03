@@ -4,6 +4,11 @@ import { mount } from 'enzyme';
 import CalcApp from '../../containers/CalcApp';
 import CalcButton from '../CalcButton';
 
+const Enzyme = require('enzyme');
+const EnzymeAdapter = require('enzyme-adapter-react-16');
+// Setup enzyme's react adapter
+Enzyme.configure({ adapter: new EnzymeAdapter() });
+
 it('render button correctly', () => {
   const app = mount(<CalcApp />);
 
