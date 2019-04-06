@@ -37,7 +37,7 @@ class CalcApp extends React.Component {
         else this.setState(state => ({ cal: state.cal.substr(0, state.cal.length-1) }));
 
         if(num !== '=') this.setState(state => ({ cal: state.cal.concat(num) }));
-        setTimeout(() => console.log(this.state.cal), 50);
+        // setTimeout(() => console.log(this.state.cal), 50);
         if(isNaN(parseInt(this.previous)) !== isNaN(parseInt(num)) || this.ago !== '=') this.ago = this.previous;
         this.previous = num;
       }
@@ -52,7 +52,6 @@ class CalcApp extends React.Component {
           ans = this.count(num1, parseFloat(this.state.extra.substr(1, this.state.extra.length-1)), this.state.extra[0]);
           this.setState(() => ({ num: ans.toString() }));
           this.setState(() => ({ cal: ans.toString() }));
-          console.log('herA');
         }
         else {
           for(let i = 0; i < this.state.cal.length; i++) {
@@ -67,8 +66,6 @@ class CalcApp extends React.Component {
               }
               log = this.state.cal[i];
               num2 = this.state.cal.substr(i+1, this.state.cal.length-1-i);
-              console.log('here');
-              // console.log(num1, num2);
               break;
             }
           }
@@ -87,7 +84,7 @@ class CalcApp extends React.Component {
 
         if(isNaN(parseInt(this.previous)) !== isNaN(parseInt(num)) || this.ago !== '=') this.ago = this.previous;
         this.previous = num;
-        setTimeout(() => console.log(this.state.cal), 50);
+        // setTimeout(() => console.log(this.state.cal), 50);
       }
     }
     else { // 數字 -> 累積
@@ -103,7 +100,7 @@ class CalcApp extends React.Component {
       
       if(isNaN(parseInt(this.previous)) !== isNaN(parseInt(num)) || this.ago !== '=') this.ago = this.previous;
       this.previous = num;
-      setTimeout(() => console.log(this.state.cal), 50);
+      // setTimeout(() => console.log(this.state.cal), 50);
     }
   }
 
