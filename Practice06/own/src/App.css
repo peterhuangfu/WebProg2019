@@ -68,6 +68,7 @@
 }
 
 .article-main {
+  margin-top: 0.7em;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -81,6 +82,39 @@
 }
 
 .article-text {
+  display: flex;
+  margin-left: 2vw;
+}
+
+.profile {
+  background-color: white;
+  margin: 10px;
+  min-width: 60vw;
+  min-height: 47vh;
+  border: 2px transparent;
+  padding: 15px;
+}
+
+.profile-title {
+  font-size: calc(15px + 2vmin);
+  margin-bottom: 10px;
+}
+
+.profile-container {
+  margin-top: 0.7em;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.profile-img {
+  display: flex;
+  width: 25vw;
+  height: 40vh;
+}
+
+.profile-text {
   display: flex;
   margin-left: 2vw;
 }

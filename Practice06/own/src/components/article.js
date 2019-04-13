@@ -16,14 +16,14 @@ export default class Article extends Component {
             <div className="article">
                 <div className="article-title"><b>{this.props.name}</b></div>
                 <div>
-                <span>Date : {time.year}/{time.month}/{time.day} &nbsp;{time.hour}:{time.min}:{time.second}
-                <br /><br />
-                Written By {this.props.author}</span>
+                    <span>Post Time : {time.year}/{time.month}/{time.day} &nbsp;{time.hour}:{time.min}:{time.second}
+                    <br /><br />
+                    Written By {this.props.author}</span>
                 </div>
                 <hr />
                 <div className="article-main">
-                <img src={this.props.source} className="article-img"></img>
-                <div className="article-text"><span>{this.props.descrip}</span></div>
+                    <img src={this.props.source} className="article-img"></img>
+                    <div className="article-text"><span>{this.props.descrip}</span></div>
                 </div>
             </div>
         );

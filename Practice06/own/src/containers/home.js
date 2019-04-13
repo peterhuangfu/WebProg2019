@@ -5,7 +5,7 @@ export default class Home extends Component {
         const style = { textAlign: 'center', color: 'rgb(1, 107, 163)', fontSize: '50px' };
         return (
             <div>
-                <h1 style={style}>This is Homepage.</h1>
+                <h1 style={style}>Welcome to my Blog</h1>
             </div>
         );
     }
