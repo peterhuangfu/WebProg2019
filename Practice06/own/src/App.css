@@ -31,15 +31,15 @@
   font-size: 20px;
 }
 
-.nav_a:visited {
-  color: #4682B4;
+.nav_a:link {
+  color: #1D3668;
   text-decoration: none;
   font-size: 20px;
   margin: 4px;
 }
 
-.nav_a:link {
-  color: #1D3668;
+.nav_a:visited {
+  color: #4682B4;
   text-decoration: none;
   font-size: 20px;
   margin: 4px;
