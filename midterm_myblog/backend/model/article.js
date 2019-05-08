@@ -1,14 +1,32 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// this will be our data base's data structure 
-const DataSchema = new Schema(
-  {
-    id: Number,
-    message: String
+// Creating a schema, sort of like working with an ORM
+const ArticleSchema = new Schema({
+	title: {
+		type: String,
+		required: [true, 'Name field is required.']
+	},
+	author: {
+		type: String,
+		required: [true, 'Body field is required.']
   },
-  { timestamps: true }
-);
+  time: {
+    type: String,
+		required: [true, 'Body field is required.']
+  },
+  content: {
+    type: String,
+		required: [true, 'Body field is required.']
+	},
+	img_source: {
+		type: String,
+		required: [true, 'Body field is required.']
+	}
+})
 
-// export the new Schema so we could modify it using Node.js
-module.exports = mongoose.model("Data", DataSchema);
+// Creating a table within database with the defined schema
+const Article = mongoose.model('article', ArticleSchema);
+
+// Exporting table for querying and mutating
+module.exports = Article;

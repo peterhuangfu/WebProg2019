@@ -3,7 +3,7 @@ const express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const Data = require('./model/article');
+const Article = require('./model/article');
 
 const API_PORT = 3001;
 const app = express();
@@ -30,8 +30,16 @@ app.use(logger("dev"));
 
 // this is our get method
 // this method fetches all available data in our database
-router.get("/getData", (req, res) => {
-  Data.find((err, data) => {
+
+// Article.find().limit(100).sort({ _id: 1 }).exec((err, res) => {
+//     if(err)
+//         console.error(err)
+//     socket.emit('get_back', res)
+//     console.log(res)
+// })
+router.get("/getArticle", (req, res) => {
+    Article.find((err, data) => {
+    console.log('get article!');
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
@@ -39,9 +47,9 @@ router.get("/getData", (req, res) => {
 
 // this is our update method
 // this method overwrites existing data in our database
-router.post("/updateData", (req, res) => {
+router.post("/updateArticle", (req, res) => {
   const { id, update } = req.body;
-  Data.findOneAndUpdate(id, update, err => {
+  Article.findOneAndUpdate(id, update, err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
@@ -49,9 +57,9 @@ router.post("/updateData", (req, res) => {
 
 // this is our delete method
 // this method removes existing data in our database
-router.delete("/deleteData", (req, res) => {
+router.delete("/deleteArticle", (req, res) => {
   const { id } = req.body;
-  Data.findOneAndDelete(id, err => {
+  Article.findOneAndDelete(id, err => {
     if (err) return res.send(err);
     return res.json({ success: true });
   });
@@ -59,8 +67,8 @@ router.delete("/deleteData", (req, res) => {
 
 // this is our create methid
 // this method adds new data in our database
-router.post("/putData", (req, res) => {
-  let data = new Data();
+router.post("/putArticle", (req, res) => {
+  let data = new Article();
 
   const { id, message } = req.body;
 
