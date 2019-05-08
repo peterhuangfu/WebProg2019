@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Article from "../components/article";
+import io from 'socket.io-client';
 
+const socket = io.connect("http://localhost:3001");
 const img_src = [
     'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Shiba_Inu.jpg/220px-Shiba_Inu.jpg',
     'https://image.cache.storm.mg/styles/smg-800x533-fp/s3/media/image/2015/11/22/20151122-071013_U589_M105080_1238.jpg?itok=QKIyfpwE',
@@ -17,6 +19,21 @@ const author = [
 ]
 
 export default class ArticleList extends Component {
+    componentDidMount() {
+    
+        this.callApi()
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+    
+    callApi = async () => {
+        socket.emit('get_article', 'quest');
+        socket.on('get_back', data => {
+          console.log(data);
+        });
+        return ('Get Article.')
+    }
+
     render() {
         const article_id = ['1', '2', '3', '4', '5', '6', '7', '8'];
         const { id } = this.props.match.params;

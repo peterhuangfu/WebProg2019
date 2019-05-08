@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Blog from './containers/blog';
+import io from 'socket.io-client';
 import './App.css';
 
+const socket = io.connect("http://localhost:3001");
 class Homepage extends Component {
-  componentDidMount() {
-    // if(this.socket !== undefined) {
-    //   console.log("Connected to sockets!");
-    // }
-    this.callApi()
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-  }
+  // componentDidMount() {
+    
+  //   this.callApi()
+  //   .then(res => console.log(res))
+  //   .catch(err => console.log(err));
+  // }
 
-  callApi = async () => {
-    const response = await fetch('/hello');
-    // const bo = await response.json();
-    await console.log(response);
+  // callApi = async () => {
+  //   socket.emit('init', 'initial.');
 
-    if (response.status !== 200) 
-      throw Error('Error!');
-    return (response);
-  }
+  //   socket.on('init', msg => {
+  //     console.log(msg);
+  //   });
+  //   return ('First connect.');
+  // }
 
   render() {
     return (
