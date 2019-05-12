@@ -1,22 +1,44 @@
 import React, { Component } from "react";
-import { NavLink, Switch, Route, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default class Articles extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { id: [] , data: []};
+    }
     componentDidMount() {
-        fetch('http://localhost:3001/api/getArticle')
+        this.getArticleID();
+    }
+
+    getArticleID = async () => {
+        await fetch('http://localhost:3001/api/getArticle')
         .then(res => { return res.json() })
         .then(originData => {
             if(originData.success)
-                console.log(originData.data);
+                this.setState(() => ({ data: originData.data }));
             else
                 alert('Fail.');
         })
         .catch((err) => console.error(err));
+
+        let idList = [];
+        for(let i = 0; i < this.state.data.length; i++) {
+            idList.push(parseInt(this.state.data[i].id));
+        }
+        this.sortById(idList);
+    }
+
+    sortById = (idList) => {
+        idList.sort(function(a, b) { return a - b ; });
+        for(let i = 0; i < idList.length; i++) {
+            idList[i] = idList[i].toString();
+        }
+        this.setState(() => ({ id: idList }));
     }
 
     render() {
-        const article_id = ['1', '2', '3', '4', '5', '6', '7', '8'];
-        const list = article_id.map((e, i) => (
+        // const article_id = ['1', '2', '3', '4', '5', '6', '7', '8'];
+        const list = this.state.id.map((e, i) => (
             <div key={i}>
                 <span>&nbsp;&nbsp;</span><NavLink className="nav_a" to={"/articles/" + e}>Article No.{e}</NavLink>
             </div>

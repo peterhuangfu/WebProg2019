@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const express = require('express');
 var cors = require('cors');
-var post_id = 20;
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Article = require('./model/article');
@@ -29,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
+// GET
 router.get("/getArticle", (req, res) => {
     Article.find((err, data) => {
     if(err)
@@ -37,6 +37,7 @@ router.get("/getArticle", (req, res) => {
   });
 });
 
+// GET ONE
 router.post("/getOneArticle", (req, res) => {
   const { id } = req.body;
   Article.findOne({ id }, (err, data) => {
@@ -46,33 +47,36 @@ router.post("/getOneArticle", (req, res) => {
   });
 });
 
+// UPDATE
 router.post("/updateArticle", (req, res) => {
   const { id, update } = req.body;
-  Article.findOneAndUpdate(id, update, err => {
+  Article.findOneAndUpdate({ id }, update, err => {
     if(err)
       return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
 });
 
+// DELETE
 router.delete("/deleteArticle", (req, res) => {
   const { id } = req.body;
-  Article.findOneAndDelete(id, err => {
+  Article.findOneAndDelete({ id }, err => {
     if(err)
       return res.send(err);
     return res.json({ success: true });
   });
 });
 
+// POST
 router.post("/postArticle", (req, res) => {
   let postData = new Article();
-  const { title, author, time, content, img_source } = req.body;
+  const { id, title, author, time, content, img_source } = req.body;
 
-  if(!post_id || !title) {
+  if(!id || !title) {
     return res.json({ success: false, error: "INVALID INPUTS" });
   }
 
-  postData.id = post_id;
+  postData.id = id;
   postData.title = title;
   postData.author = author;
   postData.time = time;
@@ -81,7 +85,6 @@ router.post("/postArticle", (req, res) => {
   postData.save(err => {
     if(err)
       return res.json({ success: false, error: err });
-    post_id += 1;
     return res.json({ success: true });
   });
 });
