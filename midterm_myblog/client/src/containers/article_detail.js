@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import Article from "../components/article";
 
 const img_src = [
@@ -16,28 +17,37 @@ const author = [
     'Peter', 'Perry', 'Panda', 'Sheep', 'Jeter', 'Alex', 'Egwene', 'Arthur'
 ]
 
-export default class ArticleList extends Component {
-    // componentDidMount() {
-    
-    //     this.callApi()
-    //     .then(res => console.log(res))
-    //     .catch(err => console.log(err));
-    // }
-    
-    // callApi = async () => {
-    //     socket.emit('get_article', 'quest');
-    //     socket.on('get_back', data => {
-    //       console.log(data);
-    //     });
-    //     return ('Get Article.')
-    // }
+export default class ArticleDetail extends Component {
+    componentDidMount() {
+        const { id } = this.props.match.params;
+        let trans = { id: id };
+        fetch('http://localhost:3001/api/getOneArticle', {
+            method: 'POST',
+            body: JSON.stringify(trans),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => { return res.json() })
+        .then(originData => {
+            if(originData.success)
+                console.log(originData.data);
+            else
+                alert('Fail.');
+        })
+        .catch((err) => console.error(err));
+    }
 
     render() {
         const article_id = ['1', '2', '3', '4', '5', '6', '7', '8'];
         const { id } = this.props.match.params;
         const descrip = 'This is Article No.'
         return id && article_id.includes(id) ? (
-            <Article id={id} name={"Article No."+id} source={img_src[parseInt(id)-1]} author={author[parseInt(id)-1]} descrip={descrip+id+'.'}/>
+            <div>
+                <button className="newPostButton"><NavLink to={"/deleteArticle/"+id}>刪除</NavLink></button>
+                <button className="newPostButton"><NavLink to={"/updateArticle"+id}>修改</NavLink></button>
+                <Article id={id} name={"Article No."+id} source={img_src[parseInt(id)-1]} author={author[parseInt(id)-1]} descrip={descrip+id+'.'}/>
+            </div>
         ) : (
             <div>
                 <h3>Article No.{id} NOT FOUND</h3>

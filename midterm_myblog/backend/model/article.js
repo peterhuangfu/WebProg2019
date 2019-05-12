@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 // Creating a schema, sort of like working with an ORM
 const ArticleSchema = new Schema({
+	id: {
+		type: String,
+		required: [true, 'Name field is required.']
+	},
 	title: {
 		type: String,
 		required: [true, 'Name field is required.']
@@ -20,8 +24,7 @@ const ArticleSchema = new Schema({
 		required: [true, 'Body field is required.']
 	},
 	img_source: {
-		type: String,
-		required: [true, 'Body field is required.']
+		type: String
 	}
 })
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 var cors = require('cors');
+var post_id = 20;
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Article = require('./model/article');
@@ -28,60 +29,59 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
-// this is our get method
-// this method fetches all available data in our database
-
-// Article.find().limit(100).sort({ _id: 1 }).exec((err, res) => {
-//     if(err)
-//         console.error(err)
-//     socket.emit('get_back', res)
-//     console.log(res)
-// })
 router.get("/getArticle", (req, res) => {
     Article.find((err, data) => {
-    console.log('get article!');
-    if (err) return res.json({ success: false, error: err });
+    if(err)
+      return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
 });
 
-// this is our update method
-// this method overwrites existing data in our database
+router.post("/getOneArticle", (req, res) => {
+  const { id } = req.body;
+  Article.findOne({ id }, (err, data) => {
+    if(err)
+      return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
+
 router.post("/updateArticle", (req, res) => {
   const { id, update } = req.body;
   Article.findOneAndUpdate(id, update, err => {
-    if (err) return res.json({ success: false, error: err });
+    if(err)
+      return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
 });
 
-// this is our delete method
-// this method removes existing data in our database
 router.delete("/deleteArticle", (req, res) => {
   const { id } = req.body;
   Article.findOneAndDelete(id, err => {
-    if (err) return res.send(err);
+    if(err)
+      return res.send(err);
     return res.json({ success: true });
   });
 });
 
-// this is our create methid
-// this method adds new data in our database
-router.post("/putArticle", (req, res) => {
-  let data = new Article();
+router.post("/postArticle", (req, res) => {
+  let postData = new Article();
+  const { title, author, time, content, img_source } = req.body;
 
-  const { id, message } = req.body;
-
-  if ((!id && id !== 0) || !message) {
-    return res.json({
-      success: false,
-      error: "INVALID INPUTS"
-    });
+  if(!post_id || !title) {
+    return res.json({ success: false, error: "INVALID INPUTS" });
   }
-  data.message = message;
-  data.id = id;
-  data.save(err => {
-    if (err) return res.json({ success: false, error: err });
+
+  postData.id = post_id;
+  postData.title = title;
+  postData.author = author;
+  postData.time = time;
+  postData.content = content;
+  postData.img_source = img_source;
+  postData.save(err => {
+    if(err)
+      return res.json({ success: false, error: err });
+    post_id += 1;
     return res.json({ success: true });
   });
 });
