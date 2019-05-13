@@ -47,7 +47,7 @@ export default class Articles extends Component {
         return (
             <div>
                 <h2 style={style}> &nbsp; &nbsp; -------------------- 文章列表 --------------------</h2>
-                <button className="newPostButton"><NavLink to="/postArticle">新增</NavLink></button>
+                <button className="newPostButton"><NavLink className="link" to="/postArticle">新增</NavLink></button>
                 {list}
             </div>
         );

@@ -4,6 +4,7 @@ var cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Article = require('./model/article');
+const Profile = require('./model/profile');
 
 const API_PORT = 3001;
 const app = express();
@@ -47,10 +48,29 @@ router.post("/getOneArticle", (req, res) => {
   });
 });
 
+// GET PROFILE
+router.get("/getProfile", (req, res) => {
+    Profile.find((err, data) => {
+    if(err)
+      return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
+
 // UPDATE
 router.post("/updateArticle", (req, res) => {
   const { id, update } = req.body;
   Article.findOneAndUpdate({ id }, update, err => {
+    if(err)
+      return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
+// UPDATE PROFILE
+router.post("/updateProfile", (req, res) => {
+  const { id, update } = req.body;
+  Profile.findOneAndUpdate({ id }, update, err => {
     if(err)
       return res.json({ success: false, error: err });
     return res.json({ success: true });

@@ -5,6 +5,7 @@ import Articles from "./articles";
 import ArticleDetail from "./article_detail";
 import UpdateArticle from "./update_article";
 import PostArticle from "./post_article";
+import UpdateProfile from "./update_profile";
 import Home from './home';
 import Profile from './profile';
 
@@ -34,6 +35,7 @@ export default class Blog extends Component {
                     <Route path="/updateArticle/:id?" component={UpdateArticle} />
                     <Route path="/postArticle/" component={PostArticle} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/updateProfile" component={UpdateProfile} />
                     <Route path="/" component={Home} />
                     <Route path="/home" component={Home} />
                     <Redirect from="/home" to="/" />

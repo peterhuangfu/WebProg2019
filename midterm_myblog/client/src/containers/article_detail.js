@@ -73,8 +73,8 @@ export default class ArticleDetail extends Component {
         const { id } = this.props.match.params;
         return id && article_id.includes(id) ? (
             <div>
-                <button className="newPostButton" onClick={this.deleteArticle}>刪除</button>
-                <button className="newPostButton"><NavLink to={"/updateArticle/" + id}>修改</NavLink></button>
+                <button className="confirm_button" onClick={this.deleteArticle}>刪除</button>
+                <button className="newPostButton"><NavLink className="link" to={"/updateArticle/" + id}>修改</NavLink></button>
                 <Article id={id} title={this.state.title} source={this.state.img_source} author={this.state.author} content={this.state.content} time={this.state.time} />
             </div>
         ) : (

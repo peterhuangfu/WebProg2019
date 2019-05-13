@@ -42,8 +42,8 @@ export default class DeleteArticle extends Component {
                     <input type="text" onChange={e => this.setState({ author: e.target.value })} placeholder="Author" name="author" value={this.state.author}/>
                     <input type="text" onChange={e => this.setState({ content: e.target.value })} placeholder="內容" name="content" value={this.state.content}/>
                     <input type="text" onChange={e => this.setState({ img_source: e.target.value })} placeholder="圖片連結" name="img_source" value={this.state.img_source}/>
-                    <button onClick={this.newPost}>確認</button>
-                    <button onClick={this.clear}>清空</button>
+                    <button className="confirm_button" onClick={this.newPost}>確認</button>
+                    <button className="confirm_button" onClick={this.clear}>清空</button>
                 </div>
             </div>
         );
