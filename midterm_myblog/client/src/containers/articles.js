@@ -8,6 +8,7 @@ export default class Articles extends Component {
     }
     componentDidMount() {
         this.getArticleID();
+        window.scrollTo(0,0);
     }
 
     getArticleID = async () => {
@@ -39,8 +40,8 @@ export default class Articles extends Component {
     render() {
         // const article_id = ['1', '2', '3', '4', '5', '6', '7', '8'];
         const list = this.state.data.map((e, i) => (
-            <div key={i}>
-                <span>&nbsp;&nbsp;</span><NavLink className="nav_a" to={"/articles/" + e.id}>【{e.title}】</NavLink>
+            <div key={i} className="article-item">
+                <span>&nbsp;&nbsp;</span><NavLink className="nav_a" to={"/articles/" + e.id}><b>【{e.title}】</b></NavLink>
             </div>
         ));
         // const style = { textAlign: 'center', color: 'rgb(1, 107, 163)' };
@@ -48,7 +49,7 @@ export default class Articles extends Component {
             <div>
                 {/* <h2 style={style}> &nbsp; &nbsp; -------------------- 文章列表 --------------------</h2> */}
                 <button className="newPostButton"><NavLink className="link" to="/postArticle"><b>發文</b></NavLink></button>
-                {list}
+                <div className="article-list-container">{list}</div>
             </div>
         );
     }

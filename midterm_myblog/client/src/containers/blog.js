@@ -11,13 +11,16 @@ import Profile from './profile';
 import './blog.css';
 
 export default class Blog extends Component {
+    componentDidMount() {
+        window.scrollTo(0,0);
+    }
     render() {
         const clear = { clear: 'both' };
         return (
             <div>
                 <header>
                     <div className="homepage-header">
-                        <div className="homepage-title"><h1>Behusky2245</h1></div>
+                        <div className="homepage-title"><h1><NavLink className="nav_title" to="/home">Byhusky2245</NavLink></h1></div>
                         <div className="nav_container">
                             <div className="homepage-nav">
                                 <button id="nav_link_butt1" className="nav_link_butt"><NavLink className="nav_link" to="/home"><b>首頁</b></NavLink></button>

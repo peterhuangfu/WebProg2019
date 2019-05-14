@@ -32,6 +32,7 @@ export default class ArticleDetail extends Component {
                 alert('Fail.');
         })
         .catch((err) => console.error(err));
+        window.scrollTo(0,0);
     }
 
     deleteArticle = async () => {

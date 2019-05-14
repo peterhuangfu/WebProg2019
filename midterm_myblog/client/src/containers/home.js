@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 export default class Home extends Component {
+    componentDidMount() {
+        window.scrollTo(0,0);
+    }
     render() {
         const style = { width: '80%', height: '80%', marginLeft: '10%', marginTop: '1em' };
         return (

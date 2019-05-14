@@ -39,6 +39,11 @@
     font-size: 20px;
 }
 
+.nav_title {
+    color: #ffffff;
+    text-decoration: none;
+}
+
 .nav_link:hover {
     color: tomato;
     text-decoration: none;
@@ -87,16 +92,16 @@
 }
 
 .nav_a:link {
-    color: #1D3668;
+    color: #4682B4;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
     margin: 4px;
 }
 
 .nav_a:visited {
-    color: #4682B4;
+    color: rgb(0, 0, 0);
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
     margin: 4px;
 }
 
@@ -124,7 +129,7 @@
     width: 4.5vw;
     height: 5vh;
     line-height: 4.5vh;
-    background-color: rgb(53, 86, 148);
+    background-color: rgb(114, 115, 117);
     margin-right: 25px;
     border-radius: 0.4em 0.4em 0.4em 0.4em;
     cursor: pointer;
@@ -141,11 +146,33 @@
     width: 4.5vw;
     height: 5vh;
     line-height: 4.5vh;
-    background-color: rgb(53, 86, 148);
+    background-color: rgb(114, 115, 117);
     border-radius: 0.4em 0.4em 0.4em 0.4em;
     margin-right: 25px;
     color: white;
     text-decoration: none;
     font-size: 18px;
     cursor: pointer;
+}
+
+.article-list-container {
+    padding-top: 6.5vh;
+}
+
+.article-item:nth-child(odd) {
+    background-color: rgb(255, 255, 255);
+    width: 80%;
+    margin-left: 5%;
+    padding: 1.5em;
+}
+
+.article-item:nth-child(even) {
+    background-color: rgb(211, 211, 211);
+    width: 80%;
+    margin-left: 5%;
+    padding: 1.5em;
+}
+
+.article-item:hover {
+    background-color: rgb(252, 251, 189);
 }
