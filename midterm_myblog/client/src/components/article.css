@@ -1,0 +1,33 @@
+.article {
+    background-color: rgb(196, 191, 191);
+    margin: 10px;
+    min-width: 60vw;
+    min-height: 50vh;
+    border: 2px transparent;
+    padding: 1em;
+}
+
+.article-title {
+    text-align: center;
+    font-size: calc(15px + 2vmin);
+    margin-bottom: 10px;
+}
+
+.article-main {
+    margin-top: 0.7em;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.article-img {
+    display: flex;
+    width: 50vw;
+    height: 55vh;
+}
+
+.article-text {
+    display: flex;
+    margin-left: 2vw;
+}

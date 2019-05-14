@@ -2,10 +2,13 @@ import React, { Component } from "react";
 
 export default class Home extends Component {
     render() {
-        const style = { textAlign: 'center', color: 'rgb(1, 107, 163)', fontSize: '50px' };
+        const style = { width: '80%', height: '80%', marginLeft: '10%', marginTop: '1em' };
         return (
             <div>
-                <h1 style={style}>Welcome to my Blog</h1>
+                <img src="http://i.imgur.com/BaYzf.jpg" alt="" style={style} />
+                <img src="http://i.imgur.com/7rYdt.jpg" alt="" style={style} />
+                <img src="http://i.imgur.com/oDl6j.jpg" alt="" style={style} />
+                <img src="http://i.imgur.com/Dqef6.jpg" alt="" style={style} />
             </div>
         );
     }

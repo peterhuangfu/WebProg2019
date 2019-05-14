@@ -38,16 +38,16 @@ export default class Articles extends Component {
 
     render() {
         // const article_id = ['1', '2', '3', '4', '5', '6', '7', '8'];
-        const list = this.state.id.map((e, i) => (
+        const list = this.state.data.map((e, i) => (
             <div key={i}>
-                <span>&nbsp;&nbsp;</span><NavLink className="nav_a" to={"/articles/" + e}>Article No.{e}</NavLink>
+                <span>&nbsp;&nbsp;</span><NavLink className="nav_a" to={"/articles/" + e.id}>【{e.title}】</NavLink>
             </div>
         ));
-        const style = { textAlign: 'center', color: 'rgb(1, 107, 163)' };
+        // const style = { textAlign: 'center', color: 'rgb(1, 107, 163)' };
         return (
             <div>
-                <h2 style={style}> &nbsp; &nbsp; -------------------- 文章列表 --------------------</h2>
-                <button className="newPostButton"><NavLink className="link" to="/postArticle">新增</NavLink></button>
+                {/* <h2 style={style}> &nbsp; &nbsp; -------------------- 文章列表 --------------------</h2> */}
+                <button className="newPostButton"><NavLink className="link" to="/postArticle"><b>發文</b></NavLink></button>
                 {list}
             </div>
         );

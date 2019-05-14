@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "react-sticky": "^6.0.3",
+    "react-sticky-header": "^0.2.0"
   },
   "description": ""
 }

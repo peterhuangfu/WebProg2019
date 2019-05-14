@@ -1,14 +1,12 @@
 import React, { Component } from "react";
+import './article.css';
 
 export default class Article extends Component {
     render() {
         return (
             <div className="article">
-                <div className="article-title"><b>{"This is article "+this.props.title}</b></div>
-                <div>
-                    <span>ID : {this.props.id}
-                    <br /><br />
-                    Post Time : {this.props.time}
+                <div className="article-title"><b>{"【"+this.props.title+"】"}</b></div>
+                <div><span>Last Update Time : {this.props.time}
                     <br /><br />
                     Written By {this.props.author}</span>
                 </div>

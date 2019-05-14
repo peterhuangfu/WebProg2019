@@ -8,6 +8,7 @@ import PostArticle from "./post_article";
 import UpdateProfile from "./update_profile";
 import Home from './home';
 import Profile from './profile';
+import './blog.css';
 
 export default class Blog extends Component {
     render() {
@@ -16,30 +17,31 @@ export default class Blog extends Component {
             <div>
                 <header>
                     <div className="homepage-header">
-                        <div className="homepage-title"><h1>My &nbsp;Blog</h1></div>
-                        <div className="homepage-nav">
-                            <button><NavLink className="nav_link" to="/profile">Profile</NavLink></button>
+                        <div className="homepage-title"><h1>Behusky2245</h1></div>
+                        <div className="nav_container">
+                            <div className="homepage-nav">
+                                <button id="nav_link_butt1" className="nav_link_butt"><NavLink className="nav_link" to="/home"><b>首頁</b></NavLink></button>
+                                <button id="nav_link_butt2" className="nav_link_butt"><NavLink className="nav_link" to="/articles"><b>文章列表</b></NavLink></button>
+                                <button id="nav_link_butt3" className="nav_link_butt"><NavLink className="nav_link" to="/profile"><b>個人檔案</b></NavLink></button>
+                                <hr className="nav_hr" />
+                            </div>
+                            <div style={clear}></div>
                         </div>
-                        <div className="homepage-nav">
-                            <button><NavLink className="nav_link" to="/articles">Article</NavLink></button>
-                        </div>
-                        <div className="homepage-nav">
-                            <button><NavLink className="nav_link" to="/home">Home</NavLink></button>
-                        </div>
-                        <div style={clear}></div>
                     </div>
                 </header>
-                <Switch>
-                    <Route exact path="/articles" component={Articles} />
-                    <Route path="/articles/:id?" component={ArticleDetail} />
-                    <Route path="/updateArticle/:id?" component={UpdateArticle} />
-                    <Route path="/postArticle/" component={PostArticle} />
-                    <Route path="/profile" component={Profile} />
-                    <Route path="/updateProfile" component={UpdateProfile} />
-                    <Route path="/" component={Home} />
-                    <Route path="/home" component={Home} />
-                    <Redirect from="/home" to="/" />
-                </Switch>
+                <section className="homepage-section">
+                    <Switch>
+                        <Route exact path="/articles" component={Articles} />
+                        <Route path="/articles/:id?" component={ArticleDetail} />
+                        <Route path="/updateArticle/:id?" component={UpdateArticle} />
+                        <Route path="/postArticle/" component={PostArticle} />
+                        <Route path="/profile" component={Profile} />
+                        <Route path="/updateProfile" component={UpdateProfile} />
+                        <Route path="/" component={Home} />
+                        <Route path="/home" component={Home} />
+                        <Redirect from="/home" to="/" />
+                    </Switch>
+                </section>
                 <footer className="homepage-footer">
                     copyright@ Behusky2245
                 </footer>

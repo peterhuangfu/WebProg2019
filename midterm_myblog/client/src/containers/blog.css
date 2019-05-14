@@ -1,0 +1,151 @@
+.homepage-header {
+    background-color: #282c34;
+    min-height: 10vh;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: calc(10px + 1vmin);
+    position: fixed;
+}
+
+.homepage-title {
+    float: left;
+    font-size: calc(10px + 1vmin);
+    margin-left: 60px;
+}
+
+.nav_container {
+    width: 25%;
+    position: relative;
+    display: inline-block;
+    margin-left: 45%;
+}
+
+.homepage-nav {
+    float: right;
+    /* margin: 10px; */
+    margin-top: 50px;
+    margin-right: 10px;
+}
+
+.homepage-nav button {
+    background-color: #282c34;
+    border: none;
+}
+
+.nav_link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.nav_link:hover {
+    color: tomato;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.nav_link:active {
+    color: tomato;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.nav_link_butt {
+    text-decoration: none;
+    margin-left: 1.5em;
+}
+
+.nav_link_butt:hover {
+    text-decoration: none;
+}
+
+.nav_hr {
+    height: .25rem;
+    width: 0;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background: tomato;
+    border: none;
+    transition: .3s all linear;
+}
+
+#nav_link_butt1:hover ~ .nav_hr {
+    margin-left: 6%;
+    width: 18%;
+}
+
+#nav_link_butt2:hover ~ .nav_hr {
+    margin-left: 30%;
+    width: 32%;
+}
+
+#nav_link_butt3:hover ~ .nav_hr {
+    margin-left: 68%;
+    width: 32%;
+}
+
+.nav_a:link {
+    color: #1D3668;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 4px;
+}
+
+.nav_a:visited {
+    color: #4682B4;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 4px;
+}
+
+.homepage-section {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    padding-top: 13vh;
+    min-height: 80vh;
+}
+
+.homepage-footer {
+    background-color: #282c34;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 10vh;
+    margin-top: 5px;
+    color: white;
+}
+
+.newPostButton {
+    float: right;
+    width: 4.5vw;
+    height: 5vh;
+    line-height: 4.5vh;
+    background-color: rgb(53, 86, 148);
+    margin-right: 25px;
+    border-radius: 0.4em 0.4em 0.4em 0.4em;
+    cursor: pointer;
+}
+  
+.link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+  
+.confirm_button {
+    float: right;
+    width: 4.5vw;
+    height: 5vh;
+    line-height: 4.5vh;
+    background-color: rgb(53, 86, 148);
+    border-radius: 0.4em 0.4em 0.4em 0.4em;
+    margin-right: 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+}
