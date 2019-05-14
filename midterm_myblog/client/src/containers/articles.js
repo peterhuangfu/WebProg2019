@@ -38,13 +38,13 @@ export default class Articles extends Component {
     }
 
     render() {
-        // const article_id = ['1', '2', '3', '4', '5', '6', '7', '8'];
+        const style = { float: 'right' };
         const list = this.state.data.map((e, i) => (
             <div key={i} className="article-item">
                 <span>&nbsp;&nbsp;</span><NavLink className="nav_a" to={"/articles/" + e.id}><b>【{e.title}】</b></NavLink>
+                <span style={style}>{e.time}</span>
             </div>
         ));
-        // const style = { textAlign: 'center', color: 'rgb(1, 107, 163)' };
         return (
             <div>
                 {/* <h2 style={style}> &nbsp; &nbsp; -------------------- 文章列表 --------------------</h2> */}

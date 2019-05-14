@@ -23,8 +23,10 @@ export default class Profile extends Component {
     render() {
         return (
             <div className="profile">
-                <div className="profile-title"><b>個人檔案</b></div>
-                <button className="newPostButton"><NavLink className="link" to="/updateProfile">編輯</NavLink></button>
+                <div className="profile-title">
+                    <b>個人檔案</b>
+                    <button className="newPostButton"><NavLink className="link" to="/updateProfile"><b>編輯</b></NavLink></button>
+                </div>
                 <hr />
                 <div className="profile-container">
                     <img src={this.state.img_source} alt="" className="profile-img"></img>

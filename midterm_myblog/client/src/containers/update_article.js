@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './edit.css';
 
 export default class UpdateArticle extends Component {
     constructor(props) {
@@ -50,7 +51,7 @@ export default class UpdateArticle extends Component {
     }
 
     clear = () => {
-        this.setState(() => ({ id: '', author: '', title: '', content: '', img_source: '', time: '' }));
+        this.setState(() => ({ author: '', title: '', content: '', img_source: '', time: '' }));
     }
 
     goBack = () => {
@@ -59,17 +60,17 @@ export default class UpdateArticle extends Component {
 
     render() {
         return (
-            <div className="article">
-                <div className="article-title"><b>{"修改文章"+this.state.id}</b></div>
-                <div>
-                    <input type="text" placeholder="ID" name="id" value={this.state.id} disabled={true}/>
-                    <input type="text" onChange={e => this.setState({ title: e.target.value })} placeholder="標題" name="topic" value={this.state.title}/>
-                    <input type="text" onChange={e => this.setState({ author: e.target.value })} placeholder="Author" name="author" value={this.state.author}/>
-                    <input type="text" onChange={e => this.setState({ content: e.target.value })} placeholder="內容" name="content" value={this.state.content}/>
-                    <input type="text" onChange={e => this.setState({ img_source: e.target.value })} placeholder="圖片連結" name="img_source" value={this.state.img_source}/>
-                    <button className="confirm_button" onClick={this.goBack}>返回</button>
-                    <button className="confirm_button" onClick={this.clear}>清空</button>
-                    <button className="confirm_button" onClick={this.update}>確認</button>
+            <div>
+                <div className="post-edit_block">
+                    <textarea className="title-block" type="text" onChange={e => this.setState({ title: e.target.value })} placeholder="請輸入文章標題..." name="topic" value={this.state.title} />
+                    <br /><textarea className="author-block" type="text" onChange={e => this.setState({ author: e.target.value })} placeholder="請輸入你的名字..." name="author" value={this.state.author} />
+                    <br /><textarea className="content-block" type="text" onChange={e => this.setState({ content: e.target.value })} placeholder="請輸入文章內容..." name="content" value={this.state.content} />
+                    <br /><textarea className="img-block" type="text" onChange={e => this.setState({ img_source: e.target.value })} placeholder="圖片連結" name="img_source" value={this.state.img_source} />
+                </div>
+                <div className="post-article_button-container">
+                    <div className="post-article_button-subcontainer"><button className="post-article_button" onClick={this.update}><b>確認</b></button></div>
+                    <div className="post-article_button-subcontainer"><button className="post-article_button" onClick={this.clear}><b>清空</b></button></div>
+                    <div className="post-article_button-subcontainer"><button className="post-article_button" onClick={this.goBack}><b>返回</b></button></div>
                 </div>
             </div>
         );

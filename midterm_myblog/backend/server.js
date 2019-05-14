@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 var cors = require('cors');
+var post_id = 11;
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Article = require('./model/article');
@@ -90,13 +91,13 @@ router.delete("/deleteArticle", (req, res) => {
 // POST
 router.post("/postArticle", (req, res) => {
   let postData = new Article();
-  const { id, title, author, time, content, img_source } = req.body;
+  const { title, author, time, content, img_source } = req.body;
 
-  if(!id || !title) {
+  if(!content || !title) {
     return res.json({ success: false, error: "INVALID INPUTS" });
   }
 
-  postData.id = id;
+  postData.id = post_id;
   postData.title = title;
   postData.author = author;
   postData.time = time;
@@ -105,6 +106,7 @@ router.post("/postArticle", (req, res) => {
   postData.save(err => {
     if(err)
       return res.json({ success: false, error: err });
+    post_id += 1;
     return res.json({ success: true });
   });
 });

@@ -1,51 +1,35 @@
-.profile {
-    /* background-color: white; */
-    margin: 10px;
-    min-width: 60vw;
-    min-height: 47vh;
-    border: 2px transparent;
-    padding: 15px;
-}
-  
-.profile-title {
-    font-size: calc(15px + 2vmin);
-    margin-bottom: 10px;
-    margin-left: 2.5vw;
-}
-  
-.profile-container {
-    margin-top: 0.7em;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-  
-.profile-img {
-    width: 27vw;
-    height: 67.5vh;
-    margin-left: 2.5vw;
-    margin-top: 10px;
-}
-  
-.profile-text {
-    margin-top: 10px;
-    margin-left: 2vw;
-}
-
-.edit-profile_block {
+.post-edit_block {
     display: flex;
     width: 90%;
-    min-height: 65vh;
+    min-height: 80vh;
     margin-left: 5%;
     align-content: flex-start;
     justify-content: center;
     flex-wrap: wrap;
     overflow: auto;
-    /* vertical-align: baseline; */
 }
 
-.profile-content_block {
+.title-block {
+    width: 80%;
+    height: 6vh;
+    border: 1px solid rgb(126, 126, 126);
+    font-size: 18px;
+    margin: 2px;
+    border-radius: 0.3em 0.3em 0.3em 0.3em;
+    padding: 0.3em 0.3em 0.3em 0.5em;
+}
+
+.author-block {
+    width: 80%;
+    height: 6vh;
+    border: 1px solid rgb(126, 126, 126);
+    font-size: 18px;
+    margin: 2px;
+    border-radius: 0.3em 0.3em 0.3em 0.3em;
+    padding: 0.3em 0.3em 0.3em 0.5em;
+}
+
+.content-block {
     width: 80%;
     height: 60vh;
     border: 1px solid rgb(126, 126, 126);
@@ -55,7 +39,7 @@
     padding: 0.3em 0.3em 0.3em 0.5em;
 }
 
-.profile-img_block {
+.img-block {
     width: 80%;
     height: 6vh;
     border: 1px solid rgb(126, 126, 126);
@@ -64,9 +48,9 @@
     border-radius: 0.3em 0.3em 0.3em 0.3em;
     padding: 0.3em 0.3em 0.3em 0.5em;
 }
-  
-.edit-profile_button-container {
-    margin-top: 3vh;
+
+.post-article_button-container {
+    margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
     margin-left: 13.5vw;
@@ -74,12 +58,12 @@
     justify-content: flex-start;
 }
 
-.edit-profile_button-subcontainer {
+.post-article_button-subcontainer {
     display: flex;
     width: auto;
 }
 
-.edit-profile_button {
+.post-article_button {
     width: 4.5vw;
     height: 5vh;
     line-height: 4.5vh;
@@ -92,10 +76,7 @@
     cursor: pointer;
 }
 
-.edit-profile_button:hover {
+.post-article_button:hover {
     color: black;
     background-color: #ffffff;
 }
-  
-  
-  

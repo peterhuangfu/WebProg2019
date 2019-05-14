@@ -42,14 +42,23 @@ export default class UpdateProfile extends Component {
         this.setState(() => ({ content: '', img_source: '' }));
     }
 
+    goBack = () => {
+        this.props.history.goBack();
+    }
+
     render() {
         return (
-            <div className="profile">
-                <div className="profile-title"><b>修改個人檔案</b></div>
-                <input type="text" onChange={e => this.setState({ content: e.target.value })} placeholder="內容" name="content" value={this.state.content}/>
-                <input type="text" onChange={e => this.setState({ img_source: e.target.value })} placeholder="圖片連結" name="img_source" value={this.state.img_source}/>
-                <button className="confirm_button" onClick={this.update}>確認</button>
-                <button className="confirm_button" onClick={this.clear}>清空</button>
+            <div className="edit_profile">
+                <div className="profile-title" style={{textAlign: 'center'}}><b>修改個人檔案</b></div>
+                <div className="edit-profile_block">
+                    <textarea type="text" className="profile-content_block" onChange={e => this.setState({ content: e.target.value })} placeholder="內容" name="content" value={this.state.content}/>
+                    <textarea type="text" className="profile-img_block" onChange={e => this.setState({ img_source: e.target.value })} placeholder="圖片連結" name="img_source" value={this.state.img_source}/>
+                </div>
+                <div className="edit-profile_button-container">
+                    <div className="edit-profile_button-subcontainer"><button className="edit-profile_button" onClick={this.update}><b>確認</b></button></div>
+                    <div className="edit-profile_button-subcontainer"><button className="edit-profile_button" onClick={this.clear}><b>清空</b></button></div>
+                    <div className="edit-profile_button-subcontainer"><button className="edit-profile_button" onClick={this.goBack}><b>返回</b></button></div>
+                </div>
             </div>
         );
     }

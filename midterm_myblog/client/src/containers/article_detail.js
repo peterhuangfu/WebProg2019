@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import Article from "../components/article";
+import './article_detail.css';
 
 const article_id = [];
 
@@ -35,7 +36,14 @@ export default class ArticleDetail extends Component {
         window.scrollTo(0,0);
     }
 
+    deleteAsk = () => {
+        let ans = window.confirm('確定要刪除？');
+        if(ans === true)
+            this.deleteArticle();
+    }
+
     deleteArticle = async () => {
+        
         const { id } = this.props.match.params;
         let trans = { id: id };
         await fetch('http://localhost:3001/api/deleteArticle', {
@@ -64,10 +72,14 @@ export default class ArticleDetail extends Component {
         const { id } = this.props.match.params;
         return id && article_id.includes(id) ? (
             <div>
-                <button className="confirm_button" onClick={this.goBack}>返回</button>
-                <button className="confirm_button" onClick={this.deleteArticle}>刪除</button>
-                <button className="newPostButton"><NavLink className="link" to={"/updateArticle/" + id}>修改</NavLink></button>
-                <Article id={id} title={this.state.title} source={this.state.img_source} author={this.state.author} content={this.state.content} time={this.state.time} />
+                <div className="article-itself">
+                    <Article id={id} title={this.state.title} source={this.state.img_source} author={this.state.author} content={this.state.content} time={this.state.time} />
+                </div>
+                <div className="article-detail_button-container">
+                    <div className="article-detail_button-subcontainer"><button className="newPostButton"><NavLink className="link" to={"/updateArticle/" + id}><b>修改</b></NavLink></button></div>
+                    <div className="article-detail_button-subcontainer"><button className="article-detail_button" onClick={this.deleteAsk}><b>刪除</b></button></div>
+                    <div className="article-detail_button-subcontainer"><button className="article-detail_button" onClick={this.goBack}><b>返回</b></button></div>
+                </div>
             </div>
         ) : (
             <div>
