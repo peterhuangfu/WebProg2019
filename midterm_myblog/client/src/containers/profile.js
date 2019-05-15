@@ -18,6 +18,7 @@ export default class Profile extends Component {
                 alert('Fail.');
         })
         .catch((err) => console.error(err));
+        window.scrollTo(0,0);
     }
 
     render() {
@@ -25,7 +26,7 @@ export default class Profile extends Component {
             <div className="profile">
                 <div className="profile-title">
                     <b>個人檔案</b>
-                    <button className="newPostButton"><NavLink className="link" to="/updateProfile"><b>編輯</b></NavLink></button>
+                    <NavLink to="/updateProfile"><button className="newPostButton"><b>編輯</b></button></NavLink>
                 </div>
                 <hr />
                 <div className="profile-container">

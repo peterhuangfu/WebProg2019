@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default class Articles extends Component {
     constructor(props) {
         super(props);
-        this.state = { id: [] , data: []};
+        this.state = { data: [], open: false };
     }
     componentDidMount() {
         this.getArticleID();
@@ -21,21 +28,15 @@ export default class Articles extends Component {
                 alert('Fail.');
         })
         .catch((err) => console.error(err));
-
-        let idList = [];
-        for(let i = 0; i < this.state.data.length; i++) {
-            idList.push(parseInt(this.state.data[i].id));
-        }
-        this.sortById(idList);
     }
 
-    sortById = (idList) => {
-        idList.sort(function(a, b) { return a - b ; });
-        for(let i = 0; i < idList.length; i++) {
-            idList[i] = idList[i].toString();
-        }
-        this.setState(() => ({ id: idList }));
-    }
+    handleClickOpen = () => {
+        this.setState({ open: true });
+    };
+    
+    handleClose = () => {
+        this.setState({ open: false });
+    };
 
     render() {
         const style = { float: 'right' };
@@ -48,8 +49,20 @@ export default class Articles extends Component {
         return (
             <div>
                 {/* <h2 style={style}> &nbsp; &nbsp; -------------------- 文章列表 --------------------</h2> */}
-                <button className="newPostButton"><NavLink className="link" to="/postArticle"><b>發文</b></NavLink></button>
+                <button className="newPostButton" onClick={this.handleClickOpen}><b>發文</b></button>
+                {/* <NavLink to="/postArticle"></NavLink> */}
                 <div className="article-list-container">{list}</div>
+                <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">輸入密碼</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>請輸入密碼</DialogContentText>
+                        <TextField autoFocus margin="dense" id="post_verify_password" label="Post_Password" type="password" fullWidth />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">取消</Button>
+                        <Button onClick={this.handleClose} color="primary">確認</Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         );
     }

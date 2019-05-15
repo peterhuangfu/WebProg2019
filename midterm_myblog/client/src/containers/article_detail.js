@@ -76,7 +76,7 @@ export default class ArticleDetail extends Component {
                     <Article id={id} title={this.state.title} source={this.state.img_source} author={this.state.author} content={this.state.content} time={this.state.time} />
                 </div>
                 <div className="article-detail_button-container">
-                    <div className="article-detail_button-subcontainer"><button className="newPostButton"><NavLink className="link" to={"/updateArticle/" + id}><b>修改</b></NavLink></button></div>
+                    <div className="article-detail_button-subcontainer"><NavLink to={"/updateArticle/" + id}><button className="newPostButton"><b>編輯</b></button></NavLink></div>
                     <div className="article-detail_button-subcontainer"><button className="article-detail_button" onClick={this.deleteAsk}><b>刪除</b></button></div>
                     <div className="article-detail_button-subcontainer"><button className="article-detail_button" onClick={this.goBack}><b>返回</b></button></div>
                 </div>
