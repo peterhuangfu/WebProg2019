@@ -4,13 +4,23 @@ import './edit.css';
 export default class DeleteArticle extends Component {
     constructor(props) {
         super(props);
-        this.state = { author: '', title: '', content: '', img_source: '', time: '' };
+        this.state = { author: '', title: '', content: '', img_source: '', time: '', lastid: '' };
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:3001/api/getArticle')
+        .then(res => { return res.json() })
+        .then(res => { 
+            this.setState(() => ({ lastid: res.data[res.data.length-1].id }));
+        })
+        .catch((err) => console.error(err));
     }
 
     newPost = async () => {
         let today = new Date();
+        let currentid = parseInt(this.state.lastid)+1;
         await this.setState(() => ({ time: today.getFullYear().toString()+'-'+(today.getMonth()+1).toString()+'-'+today.getDate().toString() }));
-        let data = { title: this.state.title, author: this.state.author, time: this.state.time, content: this.state.content, img_source: this.state.img_source };
+        let data = { id: currentid.toString(), title: this.state.title, author: this.state.author, time: this.state.time, content: this.state.content, img_source: this.state.img_source };
         await fetch('http://localhost:3001/api/postArticle', {
             method: 'POST',
             body: JSON.stringify(data),
