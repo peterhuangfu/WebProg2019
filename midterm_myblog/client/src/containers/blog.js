@@ -37,7 +37,7 @@ export default class Blog extends Component {
                         <Route exact path="/articles" component={Articles} />
                         <Route path="/articles/:id?" component={ArticleDetail} />
                         <Route path="/updateArticle/:id?" component={UpdateArticle} />
-                        <Route path="/postArticle/" component={PostArticle} />
+                        <Route path="/postArticle" component={PostArticle} />
                         <Route path="/profile" component={Profile} />
                         <Route path="/updateProfile" component={UpdateProfile} />
                         <Route path="/" component={Home} />

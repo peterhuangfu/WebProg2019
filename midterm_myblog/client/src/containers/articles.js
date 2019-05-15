@@ -11,7 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 export default class Articles extends Component {
     constructor(props) {
         super(props);
-        this.state = { data: [], open: false };
+        this.state = { data: [], open: false, password: '' };
     }
     componentDidMount() {
         this.getArticleID();
@@ -38,6 +38,31 @@ export default class Articles extends Component {
         this.setState({ open: false });
     };
 
+    checkPass = async () => {
+        console.log(this.state.password);
+        await fetch('http://localhost:3001/api/getPassword')
+        .then(res => { return res.json() })
+        .then(res => {
+            if(res.success) {
+                if(this.state.password === res.data[0].password)
+                    this.props.history.push('/postArticle');
+                else
+                    alert('Wrong Password.');
+            }
+            else
+                alert('Wrong Password.');
+        })
+        .catch((err) => console.error(err));
+        this.setState({ password: '' });
+    }
+
+    passInput = e => {
+        if(e.key === 'Enter') 
+            this.checkPass();
+        else
+            this.setState({ password: e.target.value });
+    }
+
     render() {
         const style = { float: 'right' };
         const list = this.state.data.map((e, i) => (
@@ -48,19 +73,17 @@ export default class Articles extends Component {
         ));
         return (
             <div>
-                {/* <h2 style={style}> &nbsp; &nbsp; -------------------- 文章列表 --------------------</h2> */}
                 <button className="newPostButton" onClick={this.handleClickOpen}><b>發文</b></button>
-                {/* <NavLink to="/postArticle"></NavLink> */}
                 <div className="article-list-container">{list}</div>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">輸入密碼</DialogTitle>
                     <DialogContent>
                         <DialogContentText>請輸入密碼</DialogContentText>
-                        <TextField autoFocus margin="dense" id="post_verify_password" label="Post_Password" type="password" fullWidth />
+                        <TextField autoFocus margin="dense" id="post_verify_password" type="password" fullWidth onKeyUp={this.passInput} />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">取消</Button>
-                        <Button onClick={this.handleClose} color="primary">確認</Button>
+                        <Button onClick={this.checkPass} color="primary">確認</Button>
                     </DialogActions>
                 </Dialog>
             </div>

@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Article = require('./model/article');
 const Profile = require('./model/profile');
+const Password = require('./model/password');
 
 const API_PORT = 3001;
 const app = express();
@@ -52,6 +53,15 @@ router.post("/getOneArticle", (req, res) => {
 // GET PROFILE
 router.get("/getProfile", (req, res) => {
     Profile.find((err, data) => {
+    if(err)
+      return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
+
+// GET PASSWORD
+router.get("/getPassword", (req, res) => {
+    Password.find((err, data) => {
     if(err)
       return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });

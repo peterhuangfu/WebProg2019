@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class UpdateProfile extends Component {
     constructor(props) {
         super(props);
-        this.state = { content: '', img_source: '' };
+        this.state = { id: '', content: '', img_source: '' };
     }
     componentDidMount() {
         fetch('http://localhost:3001/api/getProfile')
@@ -36,6 +36,7 @@ export default class UpdateProfile extends Component {
         })
         .catch((err) => console.error(err));
         this.clear();
+        this.props.history.push('/articles');
     }
 
     clear = () => {
