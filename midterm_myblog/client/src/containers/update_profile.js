@@ -36,7 +36,7 @@ export default class UpdateProfile extends Component {
         })
         .catch((err) => console.error(err));
         this.clear();
-        this.props.history.push('/articles');
+        this.props.history.push('/profile');
     }
 
     clear = () => {

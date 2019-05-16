@@ -69,7 +69,7 @@ export default class Profile extends Component {
                 <hr />
                 <div className="profile-container">
                     <img src={this.state.img_source} alt="" className="profile-img"></img>
-                    <div className="profile-text"><span>{this.state.content}</span></div>
+                    <div className="profile-text">{this.state.content.split('\n').map(item => { return <span>{item}<br /></span> } )}</div>
                 </div>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">輸入密碼</DialogTitle>
