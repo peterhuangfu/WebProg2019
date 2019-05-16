@@ -63,7 +63,7 @@ export default class Profile extends Component {
         return (
             <div className="profile">
                 <div className="profile-title">
-                    <b>個人檔案</b>
+                    <b>個人資訊</b>
                     <button className="newPostButton" onClick={this.handleClickOpen}><b>編輯</b></button>
                 </div>
                 <hr />

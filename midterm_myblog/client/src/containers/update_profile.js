@@ -50,7 +50,7 @@ export default class UpdateProfile extends Component {
     render() {
         return (
             <div className="edit_profile">
-                <div className="profile-title" style={{textAlign: 'center'}}><b>修改個人檔案</b></div>
+                <div className="profile-title" style={{textAlign: 'center'}}><b>編輯個人資訊</b></div>
                 <div className="edit-profile_block">
                     <textarea type="text" className="profile-content_block" onChange={e => this.setState({ content: e.target.value })} placeholder="內容" name="content" value={this.state.content}/>
                     <textarea type="text" className="profile-img_block" onChange={e => this.setState({ img_source: e.target.value })} placeholder="圖片連結" name="img_source" value={this.state.img_source}/>

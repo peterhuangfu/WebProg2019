@@ -25,7 +25,7 @@ export default class Blog extends Component {
                             <div className="homepage-nav">
                                 <button id="nav_link_butt1" className="nav_link_butt"><NavLink className="nav_link" to="/home"><b>首頁</b></NavLink></button>
                                 <button id="nav_link_butt2" className="nav_link_butt"><NavLink className="nav_link" to="/articles"><b>文章列表</b></NavLink></button>
-                                <button id="nav_link_butt3" className="nav_link_butt"><NavLink className="nav_link" to="/profile"><b>個人檔案</b></NavLink></button>
+                                <button id="nav_link_butt3" className="nav_link_butt"><NavLink className="nav_link" to="/profile"><b>個人資訊</b></NavLink></button>
                                 <hr className="nav_hr" />
                             </div>
                             <div style={clear}></div>
