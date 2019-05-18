@@ -1,5 +1,5 @@
 .homepage-header {
-    background-color: #282c34;
+    background-color: #353636;
     min-height: 10vh;
     width: 100%;
     text-align: center;
@@ -23,13 +23,12 @@
 
 .homepage-nav {
     float: right;
-    /* margin: 10px; */
     margin-top: 50px;
     margin-right: 10px;
 }
 
 .homepage-nav button {
-    background-color: #282c34;
+    background-color: #353636;
     border: none;
 }
 
@@ -91,31 +90,36 @@
     width: 32%;
 }
 
-.nav_a:link {
-    color: #4682B4;
+.nav_a {
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 16px;
     margin: 4px;
 }
 
-.nav_a:visited {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-size: 16px;
-    margin: 4px;
+.bg-container {
+    background: url('https://stmed.net/sites/default/files/styles/1920x1200/public/ocean-wallpapers-27994-353793.jpg?itok=tsZgv-YW') center center no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+  
+.bg-container::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .homepage-section {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
     padding-top: 13vh;
     min-height: 80vh;
 }
 
 .homepage-footer {
-    background-color: #282c34;
+    background-color: #353636;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -147,20 +151,16 @@
     padding-top: 6.5vh;
 }
 
-.article-item:nth-child(odd) {
+.article-item {
     background-color: rgb(255, 255, 255);
     width: 85%;
     margin-left: 5%;
     padding: 1.5em;
-}
-
-.article-item:nth-child(even) {
-    background-color: rgb(211, 211, 211);
-    width: 85%;
-    margin-left: 5%;
-    padding: 1.5em;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .article-item:hover {
-    background-color: rgb(252, 251, 189);
+    background-color: rgba(90, 90, 90, 0.5);
 }

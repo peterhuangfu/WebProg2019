@@ -5,12 +5,15 @@
     min-height: 50vh;
     border: 2px transparent;
     padding: 1em;
+    border-radius: 0.6em;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .article-title {
     text-align: center;
     font-size: calc(15px + 2vmin);
     margin-bottom: 10px;
+    color: #ffffff;
 }
 
 .article-main {
@@ -30,4 +33,5 @@
 .article-text {
     display: flex;
     margin-left: 2vw;
+    color: #ffffff;
 }

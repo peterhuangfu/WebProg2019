@@ -17,37 +17,39 @@ export default class Blog extends Component {
     render() {
         const clear = { clear: 'both' };
         return (
-            <div>
-                <header>
-                    <div className="homepage-header">
-                        <div className="homepage-title"><h1><NavLink className="nav_title" to="/home">Byhusky2245</NavLink></h1></div>
-                        <div className="nav_container">
-                            <div className="homepage-nav">
-                                <button id="nav_link_butt1" className="nav_link_butt"><NavLink className="nav_link" to="/home"><b>首頁</b></NavLink></button>
-                                <button id="nav_link_butt2" className="nav_link_butt"><NavLink className="nav_link" to="/articles"><b>文章列表</b></NavLink></button>
-                                <button id="nav_link_butt3" className="nav_link_butt"><NavLink className="nav_link" to="/profile"><b>個人資訊</b></NavLink></button>
-                                <hr className="nav_hr" />
+            <div className="bg-container">
+                <div style={{ position: 'relative' }}>
+                    <header>
+                        <div className="homepage-header">
+                            <div className="homepage-title"><h1><NavLink className="nav_title" to="/home">Byhusky2245</NavLink></h1></div>
+                            <div className="nav_container">
+                                <div className="homepage-nav">
+                                    <button id="nav_link_butt1" className="nav_link_butt"><NavLink className="nav_link" to="/home"><b>首頁</b></NavLink></button>
+                                    <button id="nav_link_butt2" className="nav_link_butt"><NavLink className="nav_link" to="/articles"><b>文章列表</b></NavLink></button>
+                                    <button id="nav_link_butt3" className="nav_link_butt"><NavLink className="nav_link" to="/profile"><b>個人資訊</b></NavLink></button>
+                                    <hr className="nav_hr" />
+                                </div>
+                                <div style={clear}></div>
                             </div>
-                            <div style={clear}></div>
                         </div>
-                    </div>
-                </header>
-                <section className="homepage-section">
-                    <Switch>
-                        <Route exact path="/articles" component={Articles} />
-                        <Route path="/articles/:id?" component={ArticleDetail} />
-                        <Route path="/updateArticle/:id?" component={UpdateArticle} />
-                        <Route path="/postArticle" component={PostArticle} />
-                        <Route path="/profile" component={Profile} />
-                        <Route path="/updateProfile" component={UpdateProfile} />
-                        <Route path="/" component={Home} />
-                        <Route path="/home" component={Home} />
-                        <Redirect from="/home" to="/" />
-                    </Switch>
-                </section>
-                <footer className="homepage-footer">
-                    copyright@ Behusky2245
-                </footer>
+                    </header>
+                    <section className="homepage-section">
+                        <Switch>
+                            <Route exact path="/articles" component={Articles} />
+                            <Route path="/articles/:id?" component={ArticleDetail} />
+                            <Route path="/updateArticle/:id?" component={UpdateArticle} />
+                            <Route path="/postArticle" component={PostArticle} />
+                            <Route path="/profile" component={Profile} />
+                            <Route path="/updateProfile" component={UpdateProfile} />
+                            <Route path="/" component={Home} />
+                            <Route path="/home" component={Home} />
+                            <Redirect from="/home" to="/" />
+                        </Switch>
+                    </section>
+                    <footer className="homepage-footer">
+                        copyright@ Behusky2245
+                    </footer>
+                </div>
             </div>
         );
     }

@@ -11,6 +11,7 @@
     font-size: calc(15px + 2vmin);
     margin-bottom: 10px;
     margin-left: 2.5vw;
+    color: #ffffff;
 }
   
 .profile-container {
@@ -31,6 +32,7 @@
 .profile-text {
     margin-top: 10px;
     margin-left: 2vw;
+    color: #ffffff;
 }
 
 .edit-profile_block {

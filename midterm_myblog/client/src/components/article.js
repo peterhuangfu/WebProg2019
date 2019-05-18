@@ -6,7 +6,7 @@ export default class Article extends Component {
         return (
             <div className="article">
                 <div className="article-title"><b>{"【"+this.props.title+"】"}</b></div>
-                <div><span>Last Update Time : {this.props.time}
+                <div><span style={{ color: '#ffffff' }}>Last Update Time : {this.props.time}
                     <br /><br />
                     Written By {this.props.author}</span>
                 </div>

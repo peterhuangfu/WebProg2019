@@ -64,11 +64,11 @@ export default class Articles extends Component {
     }
 
     render() {
-        const style = { float: 'right' };
+        const style = { float: 'right', color: '#ffffff' };
         const list = this.state.data.map((e, i) => (
             <div key={i} className="article-item">
                 <span>&nbsp;&nbsp;</span><NavLink className="nav_a" to={"/articles/" + e.id}><b>【{e.title}】</b></NavLink>
-                <span style={style}>{e.time}</span>
+                <span style={style}>最後編輯：{e.time}</span>
             </div>
         ));
         return (
