@@ -13,7 +13,7 @@ export default class Article extends Component {
                 <hr />
                 <div className="article-main">
                     <img src={this.props.source} alt="" className="article-img"></img>
-                    <div className="article-text">{this.props.content.split('\n').map(item => { return <span>{item}<br /></span> } )}</div>
+                    <div className="article-text">{this.props.content.split('\n').map((item, i) => { return <span key={i}>{item}<br /></span> } )}</div>
                 </div>
             </div>
         );

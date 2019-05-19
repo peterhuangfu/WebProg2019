@@ -39,7 +39,6 @@ export default class Articles extends Component {
     };
 
     checkPass = async () => {
-        console.log(this.state.password);
         await fetch('http://localhost:3001/api/getPassword')
         .then(res => { return res.json() })
         .then(res => {
