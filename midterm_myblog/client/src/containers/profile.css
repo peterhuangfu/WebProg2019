@@ -30,9 +30,14 @@
 }
   
 .profile-text {
-    margin-top: 10px;
+    margin-top: 7px;
     margin-left: 2vw;
     color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.5em;
+    width: 70%;
+    padding: 1.2em;
+    min-height: 63.5vh;
 }
 
 .edit-profile_block {
