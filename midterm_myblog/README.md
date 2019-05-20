@@ -10,12 +10,22 @@ Personal Blog
 ----------------------------------
 # 3. Deployed連結
 
-https://behuskyblog.herokuapp.com
+heroku: https://behuskyblog.herokuapp.com
+github: https://github.com/peterhuangfu/midterm_behuskyblog.git
 
 ----------------------------------
 # 4. 使用/操作方式
 
-[註: 有需要密碼的部分都是1234]
+使用方式:
+(1) 直接使用heroku連結
+(2) git clone下來後:
+	<1> cd midterm_behuskyblog && npm install
+	<2> cd backend && npm install
+	<3> cd ../client && npm install
+
+--> 總共需install三次(最外層、backend、client)
+
+[註: 操作中有需要密碼的部分都是1234]
 
 主要分成兩個介面 -- 文章 & 個人簡介
 (一)文章
@@ -23,7 +33,7 @@ https://behuskyblog.herokuapp.com
 操作上很簡單，就是一般常見的功能
 
 (二)個人簡介
-這邊只有編輯的功能，操作上也是很直覺
+主要功能：編輯
 
 ----------------------------------
 # 5. 其他說明
