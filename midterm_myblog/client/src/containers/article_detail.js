@@ -21,6 +21,7 @@ export default class ArticleDetail extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0,0);
         const { id } = this.props.match.params;
         let trans = { id: id };
         fetch('http://localhost:3001/api/getOneArticle', {

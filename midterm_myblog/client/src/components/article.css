@@ -25,9 +25,8 @@
 }
 
 .article-img {
-    display: flex;
-    width: 50vw;
-    height: 55vh;
+    width: 40%;
+    height: 40%;
 }
 
 .article-text {

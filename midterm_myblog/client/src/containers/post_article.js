@@ -14,6 +14,8 @@ export default class DeleteArticle extends Component {
             this.setState(() => ({ lastid: res.data[res.data.length-1].id }));
         })
         .catch((err) => console.error(err));
+
+        window.scrollTo(0,0);
     }
 
     newPost = async () => {

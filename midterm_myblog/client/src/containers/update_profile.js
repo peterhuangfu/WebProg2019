@@ -16,6 +16,8 @@ export default class UpdateProfile extends Component {
                 alert('Fail.');
         })
         .catch((err) => console.error(err));
+
+        window.scrollTo(0,0);
     }
 
     update = async () => {
