@@ -5,7 +5,7 @@ Personal Blog
 ----------------------------------
 # 2. 一句話描述這個Project
 
-"一個個人的Blog Website"
+"管理者視角的一個Personal Blog Website"
 
 ----------------------------------
 # 3. Deployed連結
