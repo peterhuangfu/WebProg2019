@@ -1,55 +1,74 @@
 import React, { Component } from 'react'
 import { Query, Mutation } from 'react-apollo'
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button
-} from 'reactstrap'
-
-import {
-  POSTS_QUERY,
-  CREATE_POST_MUTATION,
-  POSTS_SUBSCRIPTION
-} from '../../graphql'
+import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import { POSTS_QUERY, USERS_QUERY, CREATE_POST_MUTATION, POSTS_SUBSCRIPTION } from '../../graphql'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import { makeStyles } from '@material-ui/core/styles'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import Typography from '@material-ui/core/Typography'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Post from '../../components/Post/Post'
 import classes from './App.module.css'
 
 let unsubscribe = null
+const useStyle = () => makeStyles(theme => ({
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    flexShrink: 0,
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
+  },
+}))
 
 class App extends Component {
-  state = {
-    formTitle: '',
-    formBody: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      formTitle: '',
+      formBody: '',
+      formAuthor: '',
+      expanded: false,
+    }
   }
+
+  handleChange = panel => (event, isExpanded) => {
+    this.setState({ expanded: isExpanded ? panel : false });
+  };
 
   handleFormSubmit = e => {
     e.preventDefault()
 
-    const { formTitle, formBody } = this.state
+    const { formTitle, formBody, formAuthor } = this.state
 
-    if (!formTitle || !formBody) return
+    if (!formTitle || !formBody || !formAuthor) return
 
     this.createPost({
       variables: {
         title: formTitle,
         body: formBody,
         published: true,
-        authorId: 2
+        authorId: formAuthor
       }
     })
 
     this.setState({
       formTitle: '',
-      formBody: ''
+      formBody: '',
+      formAuthor: ''
     })
   }
 
   render() {
+    const kulasses = useStyle()
     return (
       <Container>
         <Row>
@@ -65,6 +84,30 @@ class App extends Component {
 
                 return (
                   <Form onSubmit={this.handleFormSubmit}>
+                    <FormGroup row>
+                      <Label for="author" sm={2}>
+                        Author
+                      </Label>
+                      <Col sm={8}>
+                        <Query query={USERS_QUERY}>
+                          {({ loading, error, data, subscribeToMore }) => {
+                            if (loading) return <p>Loading...</p>
+                            if (error) return <p>Error :(((</p>
+
+                            const users = data.users.map((user, id) => (
+                              <MenuItem value={user.id} key={id}>{user.name}</MenuItem>
+                            ))
+
+                            return <Select 
+                            value={this.state.formAuthor}
+                            onChange={e => this.setState({ formAuthor: e.target.value })}
+                            style={{width: '70%'}}>
+                            {users}
+                            </Select>
+                          }}
+                        </Query>
+                      </Col>
+                    </FormGroup>
                     <FormGroup row>
                       <Label for="title" sm={2}>
                         Title
@@ -108,8 +151,35 @@ class App extends Component {
                 if (loading) return <p>Loading...</p>
                 if (error) return <p>Error :(((</p>
 
-                const posts = data.posts.map((post, id) => (
-                  <Post data={post} key={id} />
+                let author_post = {}
+                data.posts.map((post, i) => {
+                  let auth = post.author.name;
+                  if(auth in author_post) {
+                    author_post[auth].cnt += 1
+                    author_post[auth].posts.push(post)
+                  }
+                  else {
+                    author_post[auth] = {
+                      cnt: 1,
+                      posts: [post]
+                    }
+                  }
+                })
+                
+                const posts = Object.keys(author_post).map((name_index, id) => (
+                  <ExpansionPanel key={id} expanded={this.state.expanded === id} onChange={this.handleChange(id)}>
+                    <ExpansionPanelSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1bh-content"
+                      id="panel1bh-header"
+                    >
+                      <Typography className={kulasses.heading}>{name_index}</Typography>
+                      <Typography className={kulasses.secondaryHeading}>{author_post[name_index].cnt}</Typography>
+                    </ExpansionPanelSummary>
+                      {author_post[name_index].posts.map((each_post, i) => {
+                        return <ExpansionPanelDetails key={i}><Post data={each_post} /></ExpansionPanelDetails>
+                      })}
+                  </ExpansionPanel>
                 ))
                 if (!unsubscribe)
                   unsubscribe = subscribeToMore({
@@ -128,6 +198,7 @@ class App extends Component {
                 return <div>{posts}</div>
               }}
             </Query>
+
           </Col>
         </Row>
       </Container>

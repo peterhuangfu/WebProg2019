@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Card, CardHeader, CardFooter, CardBody } from 'reactstrap'
 
 const Post = ({
