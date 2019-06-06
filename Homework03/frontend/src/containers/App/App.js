@@ -14,20 +14,20 @@ import Post from '../../components/Post/Post'
 import classes from './App.module.css'
 
 let unsubscribe = null
-const useStyle = () => makeStyles(theme => ({
-  root: {
-    width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: '33.33%',
-    flexShrink: 0,
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-  },
-}))
+// const useStyle = makeStyles(theme => ({
+//   root: {
+//     width: '100%',
+//   },
+//   heading: {
+//     fontSize: theme.typography.pxToRem(15),
+//     flexBasis: '33.33%',
+//     flexShrink: 0,
+//   },
+//   secondaryHeading: {
+//     fontSize: theme.typography.pxToRem(15),
+//     color: theme.palette.text.secondary,
+//   },
+// }))
 
 class App extends Component {
   constructor(props) {
@@ -68,7 +68,7 @@ class App extends Component {
   }
 
   render() {
-    const kulasses = useStyle()
+    // const kulasses = useStyle()
     return (
       <Container>
         <Row>
@@ -173,8 +173,8 @@ class App extends Component {
                       aria-controls="panel1bh-content"
                       id="panel1bh-header"
                     >
-                      <Typography className={kulasses.heading}>{name_index}</Typography>
-                      <Typography className={kulasses.secondaryHeading}>{author_post[name_index].cnt}</Typography>
+                      <Typography style={{ minWidth: '70%' }}><b>{name_index}</b></Typography>
+                      <Typography>Posted Number : {author_post[name_index].cnt}</Typography>
                     </ExpansionPanelSummary>
                       {author_post[name_index].posts.map((each_post, i) => {
                         return <ExpansionPanelDetails key={i}><Post data={each_post} /></ExpansionPanelDetails>
