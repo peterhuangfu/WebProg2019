@@ -150,7 +150,7 @@ class App extends Component {
               {({ loading, error, data, subscribeToMore }) => {
                 if (loading) return <p>Loading...</p>
                 if (error) return <p>Error :(((</p>
-
+                
                 let author_post = {}
                 data.posts.map((post, i) => {
                   let auth = post.author.name;
